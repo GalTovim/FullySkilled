@@ -1,0 +1,14 @@
+All members:
+
+1.Open folder and press left mouse click for "Git Bash Here"
+2.git init
+3.git remote add origin https://github.com/GalTovim/FullySkilled.git
+
+after putting new files:
+4.git add NAME_OF_FILE.SOMETHING (Example: ToDoList.txt)
+5.git commit -m "SHORT_EXPLENETION_ABOUT_THE_FILE"
+6.git pull origin master
+7.git push origin master
+
+to check for Proccesses:
+8.git status

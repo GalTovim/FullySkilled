@@ -1,3 +1,5 @@
 Fully Skilled Assigments:
 
-1.Start writing the code!!!!!!!!!!!!!!!
+1.Initiating document.
+2.Characterization Document.
+3.DFD + ERD.

@@ -1,62 +1,34 @@
 import sqlite3
-from sqlite3 import Error
+from employee import Employee
 
+conn = sqlite3.connect('FullySkilled.db')
 
-def create_connection(db_file):
-    """ create a database connection to a SQLite database """
-    conn = None
-    try:
-        conn = sqlite3.connect(db_file)
-        print(sqlite3.version)
-    except Error as e:
-        print(e)
-    finally:
-        if conn:
-            conn.close()
+c = conn.cursor()
 
-def select_all_tasks(conn):
-    """
-    Query all rows in the tasks table
-    :param conn: the Connection object
-    :return:
-    """
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM tasks")
+#c.execute("""CREATE TABLE employees (
+#            first text,
+#            last text,
+#            integer id
+#        )""")
 
-    rows = cur.fetchall()
-
-    for row in rows:
-        print(row)
-
-
-def select_task_by_priority(conn, priority):
-    """
-    Query tasks by priority
-    :param conn: the Connection object
-    :param priority:
-    :return:
-    """
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM tasks WHERE priority=?", (priority,))
-
-    rows = cur.fetchall()
-
-    for row in rows:
-        print(row)
-
-
-def main():
-    database = r"C:\sqlite\db\pythonsqlite.db"
-    
-    # create a database connection
-    conn = create_connection(database)
-
+def insert_emp(emp):
     with conn:
-        print("1. Query task by priority:")
-        select_task_by_priority(conn, 1)
+        c.execute("INSERT INTO employees VALUES (:first, :last, :id)",{'first':emp.first,'last':emp.last,'id': emp.id})
 
-        print("2. Query all tasks")
-        select_all_tasks(conn)
+def get_emps_by_id(id):
+    c.execute("SELECT * FROM employees WHERE id=:id", {'id': id})
+    return c.fetchall()
 
-if __name__ == '__main__':
-    create_connection(r"C:\sqlite\db\pythonsqlite.db")
+def remove_emp(emp):
+    with conn:
+        c.execute("DELETE from employees WHERE id=:id",
+                  {'id':emp.id})
+
+emp_1 = Employee('Gal','Tovim',305484677)
+
+insert_emp(emp_1)
+emps=get_emps_by_id(emp_1)
+
+print(emps)
+
+conn.close()

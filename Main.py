@@ -26,23 +26,25 @@ def remove_emp(emp):
     with conn:
         c.execute(f"DELETE from employees WHERE id={emp}")
 
+flag = 1
 print("Please Choose What to do:")
 print("1. Add new Employee.")
-print("2. Update Employee.")
-print("3. Delete Employee.")
-choise=int(input("Enter your choise: "))
+print("2. Delete Employee.")
+print("4. Exit.")
 
-if (choise==1):
-        Fname = input("Please Enter Employee Name: ")
-        Lname = input("Please Enter Employee Last Name: ")
-        ID = input("Please Enter Employee ID: ")
-        NewEmployee = Employee(Fname,Lname,ID)
-        insert_emp(NewEmployee)
-#Fname = input("Please Enter Employee Name: ")
-#Lname = input("Please Enter Employee Last Name: ")
-#ID = input("Please Enter Employee ID: ")
-#emp_1 = Employee(Fname,Lname,ID)
-#remove_emp(30548467)
+while(flag):
+    choise = int(input("Enter your choise: "))
+    if (choise==1):
+            Fname = input("Please Enter Employee Name: ")
+            Lname = input("Please Enter Employee Last Name: ")
+            ID = input("Please Enter Employee ID: ")
+            NewEmployee = Employee(Fname,Lname,ID)
+            insert_emp(NewEmployee)
+    if (choise==2):
+            ID = input("Please Enter Employee ID: ")
+            remove_emp(ID)
+    if (choise==4):
+            flag = 0
 print(get_emps())
 
 conn.close()

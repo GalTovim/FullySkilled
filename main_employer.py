@@ -16,7 +16,7 @@ c = conn.cursor()
 
 def insert_emp(emp):
     with conn:
-        c.execute("INSERT INTO employers VALUES (:first, :last, :id, :mail, :business)",{'first':emp.first,'last':emp.last,'id': emp.id, 'mail':emp.mail,'business_name':emp.business_name})
+        c.execute("INSERT INTO employers VALUES (:first, :last, :id, :mail, :business_name)",{'first':emp.first,'last':emp.last,'id': emp.id, 'mail':emp.mail,'business_name':emp.business_name})
 
 def get_emps_by_name(lastname):
     c.execute("SELECT * FROM employers WHERE last=:last", {'last': lastname})

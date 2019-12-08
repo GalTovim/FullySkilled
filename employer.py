@@ -14,4 +14,6 @@ class Employer:
         def fullname(self):
             return '{} {}'.format(self.first,self.last)
         def __repr__(self):
-            return "Employee('{}','{}',{},'{}','{}')".format(self.first,self.last,self.id,self.mail,self.business_name)
+            return "Employer('{}','{}',{},'{}','{}')".format(self.first,self.last,self.id,self.mail,self.business_name)
+epmr=Employer('yoni','binyamini',304817539,'yonile2106@gmail.com','super market')
+print ()

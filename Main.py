@@ -95,9 +95,16 @@ def RemoveEmployer(emp):
 # Questions and Answers
 
 
-def AddQuestion(Questions, answer):
+def AddQuestion(faq):
     with conn:
-        c.execute
+        c.execute("INSERT INTO faq VALUES (:question, :answer)", {
+            'question': faq.question, 'answer': faq.answer
+        })
+
+
+def RemoveQuestion(faq):
+    with conn:
+        c.execute("DELETE from faq WHERE question={faq.question}")
 
 
 # The Start of the Program

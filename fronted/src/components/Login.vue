@@ -1,7 +1,13 @@
-<template> </template>>
+<template>
+<h1>
+tar is the leader
+</h1>
+ </template>>
 
 <script>
-export default {};
+export default {
+    name: "Login"
+};
 </script>
 >
 

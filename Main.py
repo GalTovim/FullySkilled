@@ -23,7 +23,7 @@ c.execute("""CREATE TABLE IF NOT EXISTS employers (
         )""")
 c.execute("""CREATE TABLE IF NOT EXISTS faq (
             question text,
-            answer text,
+            answer text
         )"""
           )
 c = conn.cursor()

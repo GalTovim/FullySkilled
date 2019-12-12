@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
   res.json({
-    message: "Behold The MEVN Stack!"
+    message: "FullySkilled!"
   });
 });
 
@@ -33,7 +33,7 @@ app.post("/register", (req, res) => {
   const user = new User({
     username: req.body.username,
     password: req.body.password,
-    userType: req.body.type
+    role: req.body.role
   }).save((err, response) => {
     if (err) res.status(400).send(err);
     else res.status(200).send(response);

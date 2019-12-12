@@ -11,8 +11,10 @@ const userSchema = mongoose.Schema({
     required: true,
     minlength: 6
   },
-  userType: {
-    type: String
+  role: {
+    type: String,
+    required: true,
+    enum: ["employer", "employee"]
   }
 });
 

@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 
 //mongo connection string
 const MONGOURL =
-  "mongodb+srv://tar:FullySkilled@cluster0-byfy8.mongodb.net/test?retryWrites=true&w=majority";
+  "mongodb+srv://tar:FullySkilled@cluster0-byfy8.mongodb.net/FullySkilled?retryWrites=true&w=majority";
 
 const app = express();
 
@@ -29,6 +29,7 @@ app.get("/", (req, res) => {
   });
 });
 
+//register route
 app.post("/register", (req, res) => {
   const user = new User({
     username: req.body.username,
@@ -37,6 +38,21 @@ app.post("/register", (req, res) => {
   }).save((err, response) => {
     if (err) res.status(400).send(err);
     else res.status(200).send(response);
+  });
+});
+
+//login route
+app.post("/login", (req, res) => {
+  //check for username
+  User.findOne({ username: req.body.username }, (err, user) => {
+    if (!user) res.json({ message: "Login failed, user not found." });
+
+    //if exists compare passwrods
+    user.comparePassword(req.body.password, (err, isMatch) => {
+      if (err) throw err;
+      if (!isMatch) return res.status(400).json({ message: "Wrong password" });
+      res.status(200).send("Logged in successfully");
+    });
   });
 });
 

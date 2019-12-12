@@ -22,13 +22,13 @@ const bcrypt = require("bcrypt");
 let SALT = 10;
 
 //hashing the password before saving
-userSchema.pre("save", next => {
+userSchema.pre("save", function(next) {
   var user = this;
 
   if (user.isModified("password")) {
-    bcrypt.genSalt(SALT, (err, salt) => {
+    bcrypt.genSalt(SALT, function(err, salt) {
       if (err) return next(err);
-      bcrypt.hash(user.password, salt, (err, hash) => {
+      bcrypt.hash(user.password, salt, function(err, hash) {
         if (err) return next(err);
         user.password = hash;
         next();
@@ -38,6 +38,13 @@ userSchema.pre("save", next => {
     next();
   }
 });
+
+userSchema.methods.comparePassword = function(candidate, check) {
+  bcrypt.compare(candidate, this.password, function(err, isMatch) {
+    if (err) return check(err);
+    check(null, isMatch);
+  });
+};
 
 const User = mongoose.model("User", userSchema);
 

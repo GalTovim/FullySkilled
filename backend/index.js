@@ -10,10 +10,14 @@ const MONGOURL =
 
 const app = express();
 
+//connecting to database
 mongoose
   .connect(MONGOURL)
   .then(() => console.log("MongoDB Connected!"))
   .catch(error => console.log(error));
+
+//importing models
+const { User } = require("./Models/user");
 
 app.use(morgan("tiny"));
 app.use(cors());
@@ -22,6 +26,17 @@ app.use(bodyParser.json());
 app.get("/", (req, res) => {
   res.json({
     message: "Behold The MEVN Stack!"
+  });
+});
+
+app.post("/register", (req, res) => {
+  const user = new User({
+    username: req.body.username,
+    password: req.body.password,
+    userType: req.body.type
+  }).save((err, response) => {
+    if (err) res.status(400).send(err);
+    else res.status(200).send(response);
   });
 });
 

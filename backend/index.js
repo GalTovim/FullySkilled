@@ -2,8 +2,18 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
+const mongoose = require("mongoose");
+
+//mongo connection string
+const MONGOURL =
+  "mongodb+srv://tar:FullySkilled@cluster0-byfy8.mongodb.net/test?retryWrites=true&w=majority";
 
 const app = express();
+
+mongoose
+  .connect(MONGOURL)
+  .then(() => console.log("MongoDB Connected!"))
+  .catch(error => console.log(error));
 
 app.use(morgan("tiny"));
 app.use(cors());

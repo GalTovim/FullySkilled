@@ -4,7 +4,7 @@ from employer import Employer
 conn = sqlite3.connect('FullySkilled.db')
 c = conn.cursor()
 
-#Creates tables of employees and employers
+# Creates tables of employees and employers
 c.execute("""CREATE TABLE IF NOT EXISTS employees (
             first text,
             last text,
@@ -21,48 +21,98 @@ c.execute("""CREATE TABLE IF NOT EXISTS employers (
             mail text,
             business name text
         )""")
+c.execute("""CREATE TABLE IF NOT EXISTS faq (
+            question text,
+            answer text,
+        )"""
+          )
 c = conn.cursor()
 
-#Employee Functions
+
+# Employee Functions
+
+
 def InsertEmployee(emp):
-    with conn: c.execute("INSERT INTO employees VALUES (:first, :last, :id, :mail, :cv, :phone, :skill)",{'first':emp.first,'last':emp.last,'id': emp.id,
-                                                                       'mail':emp.mail,
-                                                                       'cv':emp.cv,'phone':emp.phone,
-                                                                       'skill':emp.skill})
+    with conn:
+        c.execute("INSERT INTO employees VALUES (:first, :last, :id, :mail, :cv, :phone, :skill)", {'first': emp.first, 'last': emp.last, 'id': emp.id,
+                                                                                                    'mail': emp.mail,
+                                                                                                    'cv': emp.cv, 'phone': emp.phone,
+                                                                                                    'skill': emp.skill})
+
+
 def UpdateEmployee(emp, id):
-    with conn: c.execute("""UPDATE employee SET id= :id WHERE id = :id""",{'first':emp.first,'last':emp.last,'id': emp.id,'mail':emp.mail,'cv':emp.cv,'phone':emp.phone,'skill':emp.skill})
+    with conn:
+        c.execute("""UPDATE employee SET id= :id WHERE id = :id""", {
+                  'first': emp.first, 'last': emp.last, 'id': emp.id, 'mail': emp.mail, 'cv': emp.cv, 'phone': emp.phone, 'skill': emp.skill})
+
+
 def GetEmployeeByID(id):
     c.execute(f"SELECT * FROM employees WHERE id={id}")
     return c.fetchall()
+
+
 def CheckEmployeeByID(id):
     c.execute("SELECT id FROM employees WHERE id={id}")
+
+
 def GetAllEmployees():
     c.execute("SELECT * FROM employees")
     return c.fetchall()
+
+
 def RemoveEmployee(emp):
     with conn:
         c.execute(f"DELETE from employees WHERE id={emp}")
 
-#Employer Functions
+# Employer Functions
+
+
 def InsertEmployer(emp):
-    with conn: c.execute("INSERT INTO employers VALUES (:first, :last, :id, :mail, :business_name)",{'first':emp.first,'last':emp.last,'id': emp.id, 'mail':emp.mail,'business_name':emp.business_name})
+    with conn:
+        c.execute("INSERT INTO employers VALUES (:first, :last, :id, :mail, :business_name)", {
+                  'first': emp.first, 'last': emp.last, 'id': emp.id, 'mail': emp.mail, 'business_name': emp.business_name})
+
+
 def GetEmployerByID(id):
     c.execute(f"SELECT * FROM employers WHERE id={id}")
     return c.fetchall()
+
+
 def CheckEmployerByID(id):
     c.execute("SELECT id FROM employer WHERE id={id}")
     return c.fetchall()
+
+
 def GetAllEmployers():
     c.execute("SELECT * FROM employers")
     return c.fetchall()
+
+
 def RemoveEmployer(emp):
     with conn:
         c.execute(f"DELETE from employers WHERE id={emp}")
 
-#The Start of the Program
-NewEmployee = Employee('Gal','Tovim',305484677,'gal2077@gmail.com','NONE',972506723042,'Engineer')
+# Questions and Answers
+
+
+def AddQuestion(faq):
+    with conn:
+        c.execute("INSERT INTO faq VALUES (:question, :answer)", {
+            'question': faq.question, 'answer': faq.answer
+        })
+
+
+def RemoveQuestion(faq):
+    with conn:
+        c.execute("DELETE from faq WHERE question={faq.question}")
+
+
+# The Start of the Program
+NewEmployee = Employee('Gal', 'Tovim', 305484677,
+                       'gal2077@gmail.com', 'NONE', 972506723042, 'Engineer')
 InsertEmployee(NewEmployee)
-NewEmployer = Employer('David','Vovila',205484677,'david2077@gmail.com','Net4U')
+NewEmployer = Employer('David', 'Vovila', 205484677,
+                       'david2077@gmail.com', 'Net4U')
 InsertEmployer(NewEmployer)
 flag = True
 print("Welcome to FullySkilled,")
@@ -70,17 +120,20 @@ print("Website for Job Search for incapables!")
 ID = input("Please Enter your ID to Log in: ")
 
 c.execute(f"SELECT count(*) FROM employees WHERE id={ID}")
-data=c.fetchone()[0]
+data = c.fetchone()[0]
 if data == 0:
     c.execute(f"SELECT count(*) FROM employers WHERE id={ID}")
     data = c.fetchone()[0]
-    if data ==0:
+    if data == 0:
         print('ID doesnt Exists in Employee or Employer Tables.')
         choise = input('Would you like to Register? [1 - Yes][2 - No]:  ')
         print(choise)
-        if (choise == '1'): print("Not Avaiable! [1]")
-        elif (choise == '2'): print("Still Not Avaiable! [2]")
-        else: print("Wrong input Insert.")
+        if (choise == '1'):
+            print("Not Avaiable! [1]")
+        elif (choise == '2'):
+            print("Still Not Avaiable! [2]")
+        else:
+            print("Wrong input Insert.")
     else:
         while (flag):
             print("\nPlease Choose What to do:")
@@ -138,11 +191,12 @@ else:
             data = c.fetchone()[0]
             if data == 0:
                 print('Employees Table: No ID Exists.')
-            else: print(GetEmployeeByID(ID))
+            else:
+                print(GetEmployeeByID(ID))
         if (choise == 4):
-                ID = input("Enter your ID: ")
+            ID = input("Enter your ID: ")
         if (choise == 5):
             flag = 0
 
-#The End of the Program
+# The End of the Program
 conn.close()

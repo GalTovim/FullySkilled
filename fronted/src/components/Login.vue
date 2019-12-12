@@ -1,6 +1,6 @@
 <template>
 <h1>
-tar is the leader
+yehudaa is the only leader
 </h1>
  </template>>
 

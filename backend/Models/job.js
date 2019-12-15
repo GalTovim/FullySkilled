@@ -6,9 +6,9 @@ const jobSchema = mongoose.Schema({
     required: true
   },
   description: String,
-  qualifications: [{ type: String }]
+  qualifications: [String]
 });
 
 const Job = mongoose.model("Job", jobSchema);
 
-export default Job;
+module.exports = { Job, jobSchema };

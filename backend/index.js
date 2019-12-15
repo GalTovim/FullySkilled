@@ -19,6 +19,7 @@ mongoose
 //importing models
 const { User } = require("./Models/user");
 const { Business } = require("./Models/business");
+const { Job } = require("./Models/job");
 
 app.use(morgan("tiny"));
 app.use(cors());
@@ -58,7 +59,7 @@ app.post("/api/login", (req, res) => {
 });
 
 //route to add business
-app.post("/api/addbusiness", (req, res) => {
+app.post("/api/addBusiness", (req, res) => {
   const business = new Business({
     name: req.body.name,
     address: req.body.address,
@@ -67,6 +68,19 @@ app.post("/api/addbusiness", (req, res) => {
   }).save((err, response) => {
     if (err) res.status(400).send(err);
     else res.status(200).send(response);
+  });
+});
+
+app.post("/api/addJob", (req, res) => {
+  Business.findOne({ name: req.body.business }, (err, business) => {
+    const job = new Job({
+      title: req.body.title,
+      description: req.body.description,
+      qualifications: req.body.qualifications
+    });
+    if (!business.openJobs) business.openJobs = [];
+    business.openJobs.push(job);
+    business.save();
   });
 });
 

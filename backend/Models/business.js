@@ -1,31 +1,27 @@
 const mongoose = require("mongoose");
 
-const User = require("./user");
-const Job = require("./job");
+const { User, userSchema } = require("./user");
+const { Job, jobSchema } = require("./job");
 
 const businessSchema = new mongoose.Schema({
   name: {
     type: String,
-    require: true
+    required: true
   },
   address: {
     type: String,
-    require: true
+    required: true
   },
   owner: {
-    type: User,
-    require: true
+    type: String,
+    required: true
   },
   phone: {
     type: String,
-    require: true
+    required: true
   },
-  openJobs: [
-    {
-      type: Job
-    }
-  ]
+  openJobs: [jobSchema]
 });
 
 const Business = mongoose.model("Business", businessSchema);
-export default Business;
+module.exports = { Business };

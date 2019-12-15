@@ -18,6 +18,7 @@ mongoose
 
 //importing models
 const { User } = require("./Models/user");
+const { Business } = require("./Models/business");
 
 app.use(morgan("tiny"));
 app.use(cors());
@@ -30,7 +31,7 @@ app.get("/", (req, res) => {
 });
 
 //register route
-app.post("/register", (req, res) => {
+app.post("/api/register", (req, res) => {
   const user = new User({
     username: req.body.username,
     password: req.body.password,
@@ -42,7 +43,7 @@ app.post("/register", (req, res) => {
 });
 
 //login route
-app.post("/login", (req, res) => {
+app.post("/api/login", (req, res) => {
   //check for username
   User.findOne({ username: req.body.username }, (err, user) => {
     if (!user) res.json({ message: "Login failed, user not found." });
@@ -53,6 +54,19 @@ app.post("/login", (req, res) => {
       if (!isMatch) return res.status(400).json({ message: "Wrong password" });
       res.status(200).send("Logged in successfully");
     });
+  });
+});
+
+//route to add business
+app.post("/api/addbusiness", (req, res) => {
+  const business = new Business({
+    name: req.body.name,
+    address: req.body.address,
+    owner: req.body.owner,
+    phone: req.body.phone
+  }).save((err, response) => {
+    if (err) res.status(400).send(err);
+    else res.status(200).send(response);
   });
 });
 

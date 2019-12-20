@@ -1,6 +1,6 @@
-#include "Person.h"
+#include <person.h>
 
-Person::Person(const Person& p1)
+Person::Person(const Person &p1)
 {
 	Name = p1.Name;
 	ID = p1.ID;
@@ -9,13 +9,12 @@ Person::Person(const Person& p1)
 
 Person::Person(string Name, long ID, int Age)
 {
-	this->Name=Name;
+	this->Name = Name;
 	this->ID = ID;
 	this->Age = Age;
-
 }
 
-Person::~Person(){
+Person::~Person()
+{
 	cout << "**************************** P dtor" << endl;
 }
-

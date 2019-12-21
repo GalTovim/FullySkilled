@@ -9,8 +9,6 @@ class Employee : public Person{
 	Employee();
     //constructor
     Employee(float salary, int Age, string name, long id);
-    //copy constructor
-	Employee(const Employee& CCtor);
     //d'tor
 	~Employee();
     //get functions

@@ -1,3 +1,4 @@
+#pragma once
 #include "employee.h"
 
 //default constructor

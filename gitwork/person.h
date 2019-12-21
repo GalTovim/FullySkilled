@@ -1,7 +1,7 @@
 #pragma once
-#include <typeinfo>
 #include <iostream>
 #include <string>
+#include <typeinfo>
 using namespace std;
 
 class Person

@@ -55,13 +55,10 @@ int Main(){
             }
     }
     for (i = 0; i < sizeOfarray; i++){
-		if (dynamic_cast <Employee*>(arr[i])){
-			cout << "arr[" << i << "] Is Employee " << endl;
-		}
+        Emp = dynamic_cast <Employee*>(arr[i]);
+		if (Emp){ cout << "arr[" << i << "] Is Employee" << endl; }
 		Stud = dynamic_cast<Student*>(arr[i]);
-		if (Stud){
-			cout << "arr[" << i << "]Is Student \n" << endl;
-		}
+		if (Stud){ cout << "arr[" << i << "]Is Student" << endl; }
 	}
     return 0;
 }

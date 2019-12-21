@@ -1,7 +1,5 @@
 #include "student.h"
 #include "person.h"
-#include <iostream>
-#include <string>
 
 Student::Student(const Student &student) : Person(student)
 {

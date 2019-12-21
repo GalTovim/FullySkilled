@@ -1,13 +1,12 @@
-#ifndef PERSON_H
-#define PERSON_H
-
+#pragma once
+#include <typeinfo>
 #include <iostream>
 #include <string>
 using namespace std;
 
 class Person
 {
-protected:
+private:
 	string Name; //10 chars maximum
 	long ID;
 	int Age;
@@ -19,4 +18,3 @@ public:
 	Person(string Name, long ID, int Age);
 	~Person();
 };
-#endif // !PERSON_H

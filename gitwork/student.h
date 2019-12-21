@@ -1,12 +1,7 @@
-#include <string>
+#pragma once
 #include "person.h"
 
-using namespace std;
-
-#ifndef STUDENT_H
-#define STUDENT_H
-
-class Student : public Person
+class Student : virtual public Person
 {
 protected:
   int Average;
@@ -16,5 +11,3 @@ public:
   Student(int Average, string Institute, int Age, string name, long id);
   ~Student();
 };
-
-#endif

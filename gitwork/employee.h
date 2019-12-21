@@ -1,7 +1,7 @@
 #pragma once
 #include "person.h"
 
-class Employee : public Person{
+class Employee : virtual public Person{
     private:
         float salary;
     public:

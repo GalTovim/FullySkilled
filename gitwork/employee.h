@@ -8,7 +8,7 @@ class Employee : public Person{
     //default constructor
 	Employee();
     //constructor
-    Employee(float salary, int Age, string name, long id);
+    Employee(float salary, int age, string name, long id);
     //d'tor
 	~Employee();
     //get functions

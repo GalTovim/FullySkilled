@@ -22,10 +22,15 @@ int Main(){
         if (choice==1){
             cout << "Enter Student Name: ";
             cin >> nameStudent;
+            cout << "Enter Student ID: ";
+            cin >> idPerson;
             cout << "Enter Student Institute: ";
             cin >> instituteStudent;
-            
-            arr[i]= new Student();
+            cout << "Enter Student Age: ";
+            cin >> agePerson;
+            cout << "Enter Student Averange: ";
+            cin >> avgPerson;
+            arr[i]= new Student(avgPerson,instituteStudent,agePerson,nameStudent,idPerson);
         }
     }
     return 0;

@@ -1,3 +1,9 @@
+/*
+Gal Tovim 305484677
+Yhonatan Binyamini **********
+Tar Wolfson ***********
+Yehuda Leh *************8
+*/
 #pragma once
 #include "person.h"
 #include "student.h"

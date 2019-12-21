@@ -1,7 +1,7 @@
 #include "student.h"
 #include "person.h"
-
-using namespace std;
+#include <iostream>
+#include <string>
 
 Student::Student(const Student &student) : Person(student)
 {

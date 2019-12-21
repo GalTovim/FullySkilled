@@ -6,5 +6,7 @@ class Employee : public Person{
         float salary;
     public:
     //default constructor
-	Employee();  
+	Employee();
+    //constructor
+    Employee(float salary, int Age, string name, long id);
 };

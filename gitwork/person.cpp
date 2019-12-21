@@ -1,5 +1,11 @@
 #include <person.h>
 
+Person::Person(){
+	Name = "";
+	ID = NULL;
+	Age = NULL;
+}
+
 Person::Person(const Person &p1)
 {
 	Name = p1.Name;

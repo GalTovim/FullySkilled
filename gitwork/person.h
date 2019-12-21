@@ -13,6 +13,7 @@ protected:
 	int Age;
 
 public:
+	Person();
 	Person(const Person &p1);
 	Person(string Name, long ID, int Age);
 	~Person();

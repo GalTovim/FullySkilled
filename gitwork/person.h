@@ -11,7 +11,8 @@ protected:
 	string Name; //10 chars maximum
 	long ID;
 	int Age;
-
+	friend class Student;
+	friend class Employee;
 public:
 	Person();
 	Person(const Person &p1);

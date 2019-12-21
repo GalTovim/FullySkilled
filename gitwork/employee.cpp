@@ -11,8 +11,12 @@ Employee::Employee(float Salary, int age, string name, long id) : Person(name, i
 {
   this->salary = salary;
 }
-//d'tor
-Employee::~Employee()
-{
-  cout << "Employee C'tor" << endl;
+/*
+//copy constructor
+Employee::Employee(const Employee& CopyEmployee) {
+	salary = CopyEmployee.salary;
+    Age = CopyEmployee.Age;
+	Name = CopyEmployee.Name;
+    ID = CopyEmployee.ID;
 }
+*/

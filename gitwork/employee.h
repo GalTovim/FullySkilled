@@ -9,8 +9,12 @@ class Employee : public Person{
 	Employee();
     //constructor
     Employee(float salary, int age, string name, long id);
+    /*
+    //copy constructor
+    Employee(const Employee& CopyEmployee);
+    */
     //d'tor
-	~Employee();
+	virtual ~Employee();
     //get functions
     inline float GetSalary() { return salary; }
 };

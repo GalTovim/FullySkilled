@@ -11,7 +11,7 @@ Yehuda Leh *************8
 
 int Main(){
     int sizeOfarray,choice;
-    Person** arr;
+    Person **arr;
     Student* Stud;
     Employee* Emp;
 
@@ -61,7 +61,7 @@ int Main(){
             }
     }
     for (i = 0; i < sizeOfarray; i++){
-        Emp = dynamic_cast <Employee*>(arr[i]);
+        Emp = dynamic_cast<Employee*>(arr[i]);
 		if (Emp){ cout << "arr[" << i << "] Is Employee" << endl; }
 		Stud = dynamic_cast<Student*>(arr[i]);
 		if (Stud){ cout << "arr[" << i << "]Is Student" << endl; }

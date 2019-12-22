@@ -4,6 +4,10 @@
 
 
 
+Student::Student()
+{
+}
+
 Student::Student(const Student& student) : Person(student)
 
 {

@@ -2,7 +2,7 @@
 #include "person.h"
 
 class Employee : virtual public Person {
-private:
+protected:
 	float salary;
 public:
 	//default constructor

@@ -5,7 +5,7 @@
 using namespace std;
 class Person
 {
-private:
+protected:
 	string Name; //10 chars maximum
 	long ID;
 	int Age;

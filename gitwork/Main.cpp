@@ -9,6 +9,7 @@ Yehuda Leh *************8
 #include "person.h"
 #include "student.h"
 #include "employee.h"
+#include "workingstudent.h"
 int main() {
 	int sizeOfarray, choice;
 	Person** arr;
@@ -31,7 +32,7 @@ int main() {
 			while (!flag) {
 				cout << "Wrong Choice try again." << endl;
 				cin >> choice;
-				if ((choice == 1) || (choice == 2))
+				if ((choice == 1) || (choice == 2) || (choice == 3))
 					flag = true;
 			}
 		}
@@ -74,8 +75,8 @@ int main() {
 				cin >> avgPerson;
 				cout << "Enter employee Salary: ";
 				cin >> salaryEmployee;
-				//arr[i] = new {constractor of workingstudent here}
-			}
+				arr[i] = new workingStudent(avgPerson, instituteStudent, agePerson, nameStudent, idPerson, salaryEmployee,false);
+			}			//workingStudent(int Average, string Institute, int Age, string name, long id, int salary, bool same_institute);
 			
 		}
 	

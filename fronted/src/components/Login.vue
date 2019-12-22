@@ -1,10 +1,4 @@
 <template>
-<<<<<<< HEAD
-<h1>
-yehudaa is the only leader
-</h1>
- </template>>
-=======
   <div class="login">
     <div v-if="loggingIn" class="container-loading">
       <img src="/loading.gif" alt="Loading Icon" />
@@ -18,7 +12,6 @@ yehudaa is the only leader
     </form>
   </div>
 </template>
->>>>>>> a88714b1ef5c91f157df35ff700fa539f66294f0
 
 <script>
 import axios from "axios";

@@ -1,20 +1,22 @@
 #pragma once
 #include "person.h"
 
-class Employee : virtual public Person{
-    private:
-        float salary;
-    public:
-    //default constructor
+class Employee : virtual public Person {
+private:
+	float salary;
+public:
+	//default constructor
 	Employee();
-    //constructor
-    Employee(float salary, int age, string name, long id);
-    /*
-    //copy constructor
-    Employee(const Employee& CopyEmployee);
-    */
-    //d'tor
-	virtual ~Employee();
-    //get functions
-    inline float GetSalary() { return salary; }
+	//constructor
+	Employee(float salary, int age, string name, long id);
+	/*
+	//copy constructor
+	Employee(const Employee& CopyEmployee);
+	*/
+	//d'tor
+	~Employee();
+	//get functions
+	inline float GetSalary() { return salary; }
+	virtual void WhoAmI();
+
 };

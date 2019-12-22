@@ -3,7 +3,6 @@
 #include <string>
 #include <typeinfo>
 using namespace std;
-
 class Person
 {
 private:
@@ -12,9 +11,10 @@ private:
 	int Age;
 	friend class Student;
 	friend class Employee;
-public:
+	public:
 	Person();
-	Person(const Person &p1);
+	Person(const Person& p1);
 	Person(string Name, long ID, int Age);
-	~Person();
+	virtual void WhoAmI() = 0;
+	~Person();	
 };

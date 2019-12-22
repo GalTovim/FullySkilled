@@ -1,3 +1,5 @@
+
+
 <template>
   <div class="login">
     <div v-if="loggingIn" class="container-loading">
@@ -39,7 +41,7 @@ export default {
   }
 };
 </script>
->
+
 
 <style scoped lang="scss">
 .login {

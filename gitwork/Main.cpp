@@ -9,6 +9,7 @@ Yehuda Leh *************8
 #include "person.h"
 #include "student.h"
 #include "employee.h"
+#include "workingstudent.h"
 int main() {
 	int sizeOfarray, choice;
 	Person** arr;
@@ -23,15 +24,15 @@ int main() {
 	cin >> sizeOfarray;
 	arr = new Person * [sizeOfarray];
 	for (i = 0; i < sizeOfarray; i++) {
-		printf("Enter [1]Student or [2]Employee: ");
+		printf("Enter [1]Student or [2]Employee or [3]working student: ");
 		cin >> choice;
 		int flag = true;
-		if ((choice != 1) && (choice != 2)) {
+		if ((choice != 1) && (choice != 2) && (choice != 3)) {
 			flag = false;
 			while (!flag) {
 				cout << "Wrong Choice try again." << endl;
 				cin >> choice;
-				if ((choice == 1) || (choice == 2))
+				if ((choice == 1) || (choice == 2) || (choice == 3))
 					flag = true;
 			}
 		}
@@ -61,8 +62,21 @@ int main() {
 				arr[i] = new Employee(salaryEmployee, agePerson, nameStudent, idPerson);
 			}
 
-			//working student is missing here
-
+			if (choice == 3) {
+				cout << "Enter Name: ";
+				cin >> nameStudent;
+				cout << "Enter ID: ";
+				cin >> idPerson;
+				cout << "Enter Student Institute: ";
+				cin >> instituteStudent;
+				cout << "Enter Age: ";
+				cin >> agePerson;
+				cout << "Enter Student Averange: ";
+				cin >> avgPerson;
+				cout << "Enter employee Salary: ";
+				cin >> salaryEmployee;
+				arr[i] = new workingStudent(avgPerson, instituteStudent, agePerson, nameStudent, idPerson, salaryEmployee,false);
+			}			//workingStudent(int Average, string Institute, int Age, string name, long id, int salary, bool same_institute);
 			
 		}
 	

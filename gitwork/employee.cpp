@@ -21,6 +21,8 @@ Employee::Employee(const Employee& CopyEmployee) {
 	ID = CopyEmployee.ID;
 }
 */
+Employee::~Employee(){}
+
 void Employee::WhoAmI(){
 cout << "an Employee" << endl;
 }

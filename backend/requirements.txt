@@ -1,4 +1,5 @@
 cmake
+dnspython
 flask
 flask-mongoengine
 face_recognition

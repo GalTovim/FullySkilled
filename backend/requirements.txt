@@ -1,0 +1,4 @@
+cmake
+flask
+flask-mongoengine
+face_recognition

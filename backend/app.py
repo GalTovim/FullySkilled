@@ -26,7 +26,8 @@ db = MongoEngine(app)
 @app.route('/api/register', methods=['POST'])
 def register():
     content = request.form
-    user = User(username=content['username'], password=content['password'], role=content['role'])
+    user = User(username=content['username'],
+                password=content['password'], role=content['role'])
     if 'photo' in request.files:
         user.photo.put(request.files['photo'])
     try:
@@ -44,15 +45,18 @@ def login():
         photo = request.files['photo']
         unknown_image = face_recognition.load_image_file(photo)
         try:
-            unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
+            unknown_face_encoding = face_recognition.face_encodings(unknown_image)[
+                0]
         except IndexError:
             return jsonify({'status': '400', 'message': 'No face in image'})
 
         known_faces = OrderedDict()
         for user in User.objects():
-            known_faces[user.username] = face_recognition.face_encodings(face_recognition.load_image_file(user.photo))[0]
+            known_faces[user.username] = face_recognition.face_encodings(
+                face_recognition.load_image_file(user.photo))[0]
 
-        results = face_recognition.compare_faces(list(known_faces.values()), unknown_face_encoding)
+        results = face_recognition.compare_faces(
+            list(known_faces.values()), unknown_face_encoding)
         if True not in results:
             return jsonify({'status': 404, 'message': 'Face not found'})
         else:

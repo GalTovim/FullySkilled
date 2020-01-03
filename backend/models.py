@@ -17,6 +17,7 @@ class Job(EmbeddedDocument):
     title = StringField(required=True, unique=True)
     description = StringField()
     applicants = ListField(StringField())
+    priority = BooleanField()
 
 
 class Business(Document):
@@ -25,7 +26,3 @@ class Business(Document):
     owner = ReferenceField(User, required=True)
     jobs = EmbeddedDocumentListField(Job)
     meta = {'collection': 'Businesses'}
-
-
-
-

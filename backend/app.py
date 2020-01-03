@@ -3,6 +3,7 @@ import io
 from collections import OrderedDict
 
 from flask import Flask, jsonify, flash, request, redirect
+from flask_cors import CORS
 from flask_mongoengine import MongoEngine
 from werkzeug.utils import secure_filename
 import face_recognition
@@ -13,6 +14,7 @@ from models import *
 PHOTO_FOLDER = './photos'
 
 app = Flask(__name__)
+CORS(app)
 
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -48,7 +50,7 @@ def login():
             unknown_face_encoding = face_recognition.face_encodings(unknown_image)[
                 0]
         except IndexError:
-            return jsonify({'status': '400', 'message': 'No face in image'})
+            return jsonify({'status': '400', 'error': 'No face in image'})
 
         known_faces = OrderedDict()
         for user in User.objects():
@@ -58,7 +60,7 @@ def login():
         results = face_recognition.compare_faces(
             list(known_faces.values()), unknown_face_encoding)
         if True not in results:
-            return jsonify({'status': 404, 'message': 'Face not found'})
+            return jsonify({'status': 404, 'error': 'Face not found'})
         else:
             index = [i for i, val in enumerate(results) if val][0]
             k = list(known_faces.keys())
@@ -67,7 +69,7 @@ def login():
         try:
             user = User.objects.get(username=content['username'])
             if user.password == content['password']:
-                return jsonify({'status': 200, 'message': 'logged in'})
+                return jsonify({'status': 200, 'message': 'logged in', 'user': user.to_json()})
             else:
                 return jsonify({'status': 404, 'error': 'Wrong password'})
         except DoesNotExist:

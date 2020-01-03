@@ -1,18 +1,36 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div v-if="this.hasAccount === false">
+      <Register />
+      <button @click="flipHasAccount()">I have an account</button>
+    </div>
+    <div v-else>
+      <Login />
+      <button @click="flipHasAccount()">I don't have an account</button>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Login from "@/components/Login.vue";
+import Register from "@/components/Register.vue";
 
 export default {
-  name: 'home',
+  name: "home",
   components: {
-    HelloWorld
+    Register,
+    Login
+  },
+  data() {
+    return {
+      hasAccount: false
+    };
+  },
+  methods: {
+    flipHasAccount() {
+      this.hasAccount = !this.hasAccount;
+    }
   }
-}
+};
 </script>

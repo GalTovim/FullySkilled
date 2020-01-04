@@ -1,5 +1,6 @@
-import os
-import io
+import base64
+from PIL import Image
+from io import BytesIO
 from collections import OrderedDict
 
 from flask import Flask, jsonify, flash, request, redirect
@@ -28,10 +29,11 @@ db = MongoEngine(app)
 @app.route('/api/register', methods=['POST'])
 def register():
     content = request.form
+    photo = request.files['photo']
     user = User(username=content['username'],
                 password=content['password'], role=content['role'])
-    if content['photo']:
-        user.photo.put(content['photo'])
+    if photo:
+        user.photo.put(photo)
     try:
         user.save()
     except NotUniqueError:
@@ -43,8 +45,8 @@ def register():
 @app.route('/api/login', methods=['POST'])
 def login():
     content = request.form
-    if content['photo']:
-        photo = content['photo']
+    photo = request.files['photo']
+    if photo:
         unknown_image = face_recognition.load_image_file(photo)
         try:
             unknown_face_encoding = face_recognition.face_encodings(unknown_image)[

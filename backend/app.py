@@ -30,8 +30,8 @@ def register():
     content = request.form
     user = User(username=content['username'],
                 password=content['password'], role=content['role'])
-    if 'photo' in request.files:
-        user.photo.put(request.files['photo'])
+    if content['photo']:
+        user.photo.put(content['photo'])
     try:
         user.save()
     except NotUniqueError:
@@ -43,8 +43,8 @@ def register():
 @app.route('/api/login', methods=['POST'])
 def login():
     content = request.form
-    if 'photo' in request.files:
-        photo = request.files['photo']
+    if content['photo']:
+        photo = content['photo']
         unknown_image = face_recognition.load_image_file(photo)
         try:
             unknown_face_encoding = face_recognition.face_encodings(unknown_image)[

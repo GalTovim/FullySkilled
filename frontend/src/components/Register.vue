@@ -1,18 +1,8 @@
 <template>
   <div id="register">
     <h1>Register</h1>
-    <input
-      type="text"
-      name="username"
-      v-model="input.username"
-      placeholder="Username"
-    />
-    <input
-      type="password"
-      name="password"
-      v-model="input.password"
-      placeholder="Password"
-    />
+    <input type="text" name="username" v-model="input.username" placeholder="Username" />
+    <input type="password" name="password" v-model="input.password" placeholder="Password" />
     <select name="roles" v-model="input.role">
       <option value="Employee">Employee</option>
       <option value="Employer">Employer</option>
@@ -66,7 +56,8 @@ export default {
       this.camera = !this.camera;
     },
     oncapturechild(img) {
-      this.image = img;
+      this.image = new Image();
+      this.image.src = img;
     },
     getRole(role) {
       this.input.role = role;

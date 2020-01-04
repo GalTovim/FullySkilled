@@ -40,7 +40,7 @@ export default {
         formData.append("username", this.input.username);
         formData.append("password", this.input.password);
         formData.append("role", this.input.role);
-        if (this.image) formData.append("photo", this.image);
+        if (this.image) formData.append("photo", this.image, "user.jpeg");
 
         axios
           .post(path, formData, {
@@ -56,8 +56,7 @@ export default {
       this.camera = !this.camera;
     },
     oncapturechild(img) {
-      this.image = new Image();
-      this.image.src = img;
+      this.image = img;
     },
     getRole(role) {
       this.input.role = role;

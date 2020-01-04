@@ -41,9 +41,15 @@ export default {
         formData.append("username", this.input.username);
         formData.append("password", this.input.password);
 
-        axios.post(path, formData).then(res => {
-          console.log(res);
-        });
+        axios
+          .post(path, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data"
+            }
+          })
+          .then(res => {
+            console.log(res);
+          });
       }
     }
   }

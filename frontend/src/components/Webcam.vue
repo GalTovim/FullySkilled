@@ -18,26 +18,21 @@
 
         <div class="row">
           <div class="col-md-12">
-            <button type="button" class="btn btn-primary" @click="onCapture">
-              Capture Photo
-            </button>
-            <button type="button" class="btn btn-danger" @click="onStop">
-              Stop Camera
-            </button>
-            <button type="button" class="btn btn-success" @click="onStart">
-              Start Camera
-            </button>
+            <button type="button" class="btn btn-primary" @click="onCapture">Capture Photo</button>
+            <button type="button" class="btn btn-danger" @click="onStop">Stop Camera</button>
+            <button type="button" class="btn btn-success" @click="onStart">Start Camera</button>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6" v-if="img !== null">
         <h2>Captured Image</h2>
         <figure class="figure">
           <img :src="img" class="img-responsive" />
         </figure>
       </div>
-    </div></div
-></template>
+    </div>
+  </div>
+</template>
 
 <script>
 import { WebCam } from "vue-web-cam";

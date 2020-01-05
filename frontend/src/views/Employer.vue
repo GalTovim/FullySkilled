@@ -8,7 +8,9 @@ export default {
 data(){
     return{
         input:{
-            bussinessname:
+            bussinessname: "",
+            bussinessaddress: "",
+
 
         }
 

@@ -1,10 +1,8 @@
-<template>
-  <h1>Admin Page</h1>
-</template>
+<template></template>
 
 <script>
 export default {
-  name: "admin",
+  name: "employee",
 
   data() {
     return {};

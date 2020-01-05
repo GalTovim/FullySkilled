@@ -10,9 +10,8 @@ from werkzeug.utils import secure_filename
 import face_recognition
 from mongoengine.errors import NotUniqueError, DoesNotExist
 
-from models import *
+from backend.models import *
 
-PHOTO_FOLDER = './photos'
 
 app = Flask(__name__)
 CORS(app)
@@ -21,7 +20,6 @@ app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['MONGODB_HOST'] = 'mongodb+srv://tar:FullySkilled@cluster0-byfy8.mongodb.net/FullySkilled?retryWrites=true' \
                              '&w=majority'
-app.config['UPLOAD_FOLDER'] = PHOTO_FOLDER
 
 db = MongoEngine(app)
 
@@ -30,9 +28,16 @@ db = MongoEngine(app)
 def register():
     content = request.form
     user = User(username=content['username'],
-                password=content['password'], role=content['role'])
+                password=content['password'],
+                role=content['role'])
     photo = request.files['photo']
     if 'photo' in request.files:
+        unknown_image = face_recognition.load_image_file(request.files['photo'])
+        try:
+            unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
+        except IndexError:
+            return jsonify({'status': '400', 'error': 'No face in image'})
+
         user.photo.put(photo)
     try:
         user.save()
@@ -48,8 +53,7 @@ def login():
     if 'photo' in request.files:
         unknown_image = face_recognition.load_image_file(request.files['photo'])
         try:
-            unknown_face_encoding = face_recognition.face_encodings(unknown_image)[
-                0]
+            unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
         except IndexError:
             return jsonify({'status': '400', 'error': 'No face in image'})
 
@@ -65,7 +69,8 @@ def login():
         else:
             index = [i for i, val in enumerate(results) if val][0]
             k = list(known_faces.keys())
-            return jsonify({'status': 200, 'message': 'Face is {0}'.format(k[index])})
+            return jsonify({'status': 200, 'message': 'Face is {0}'.format(k[index]),
+                            'user': User.objects.get(username=k[index])})
     else:
         try:
             user = User.objects.get(username=content['username'])
@@ -126,6 +131,16 @@ def apply_job():
     job = business.jobs.filter(title=content['title'])[0]
     job.applicants.append(content['username'])
     return jsonify({'status': 200, 'message': 'Applied for job'})
+
+
+@app.route('/api/addQuestion', methods=['POST'])
+def add_question():
+    content = request.form
+    count = Faq.objects.count()
+    count += 1
+    faq = Faq(question=content['question'], answer=content['answer'], number=count)
+    faq.save()
+    return jsonify({'status': 200, 'message': 'Question added'})
 
 
 if __name__ == '__main__':

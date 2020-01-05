@@ -50,6 +50,7 @@ export default {
     },
     flipCamera() {
       this.camera = !this.camera;
+      this.image = null;
     },
     dataURItoBlob(dataURI, type) {
       // convert base64 to raw binary data held in a string

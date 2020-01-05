@@ -1,6 +1,3 @@
-import base64
-from PIL import Image
-from io import BytesIO
 from collections import OrderedDict
 
 from flask import Flask, jsonify, flash, request, redirect
@@ -44,7 +41,7 @@ def register():
     except NotUniqueError:
         return jsonify({'status': 400, 'error': 'User with username ' + content['username'] + ' already exists'})
 
-    return jsonify({'status': 200, 'message': 'User registered successfully'})
+    return jsonify({'status': 200, 'message': 'User registered successfully', 'user': user})
 
 
 @app.route('/api/login', methods=['POST'])
@@ -75,7 +72,7 @@ def login():
         try:
             user = User.objects.get(username=content['username'])
             if user.password == content['password']:
-                return jsonify({'status': 200, 'message': 'logged in', 'user': user.to_json()})
+                return jsonify({'status': 200, 'message': 'logged in', 'user': user})
             else:
                 return jsonify({'status': 404, 'error': 'Wrong password'})
         except DoesNotExist:

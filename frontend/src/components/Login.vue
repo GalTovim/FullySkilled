@@ -44,9 +44,11 @@ export default {
 
       if ((this.input.username && this.input.password) || this.image) {
         const formData = new FormData();
-        formData.append("username", this.input.username);
-        formData.append("password", this.input.password);
         if (this.image) formData.append("photo", this.image, "user.jpeg");
+        else {
+          formData.append("username", this.input.username);
+          formData.append("password", this.input.password);
+        }
 
         axios
           .post(path, formData, {
@@ -55,6 +57,7 @@ export default {
             }
           })
           .then(res => {
+            console.log(res);
             if (res.data.error) {
               this.alert.alertContent = res.data.error;
               this.alert.showDismissibleAlert = true;

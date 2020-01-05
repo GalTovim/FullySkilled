@@ -29,10 +29,10 @@ db = MongoEngine(app)
 @app.route('/api/register', methods=['POST'])
 def register():
     content = request.form
-    photo = request.files['photo']
     user = User(username=content['username'],
                 password=content['password'], role=content['role'])
-    if photo:
+    photo = request.files['photo']
+    if 'photo' in request.files:
         user.photo.put(photo)
     try:
         user.save()
@@ -45,9 +45,8 @@ def register():
 @app.route('/api/login', methods=['POST'])
 def login():
     content = request.form
-    photo = request.files['photo']
-    if photo:
-        unknown_image = face_recognition.load_image_file(photo)
+    if 'photo' in request.files:
+        unknown_image = face_recognition.load_image_file(request.files['photo'])
         try:
             unknown_face_encoding = face_recognition.face_encodings(unknown_image)[
                 0]

@@ -2,11 +2,11 @@
   <div class="home">
     <div v-if="this.hasAccount === false">
       <Register />
-      <button @click="flipHasAccount()">I have an account</button>
+      <b-button @click="flipHasAccount()">I have an account</b-button>
     </div>
     <div v-else>
       <Login />
-      <button @click="flipHasAccount()">I don't have an account</button>
+      <b-button @click="flipHasAccount()">I don't have an account</b-button>
     </div>
   </div>
 </template>

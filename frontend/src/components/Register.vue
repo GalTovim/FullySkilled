@@ -1,24 +1,19 @@
 <template>
   <div id="register">
     <h1>Register</h1>
-    <b-form-input
-      type="text"
-      name="username"
-      v-model="input.username"
-      placeholder="Username"
-    />
-    <b-form-input
-      type="password"
-      name="password"
-      v-model="input.password"
-      placeholder="Password"
-    />
-    <select name="roles" v-model="input.role">
+    <b-form-input type="text" name="username" v-model="input.username" placeholder="Username" />
+    <b-form-input type="password" name="password" v-model="input.password" placeholder="Password" />
+    <b-form-select name="roles" v-model="input.role">
       <option value="Employee">Employee</option>
       <option value="Employer">Employer</option>
-    </select>
+    </b-form-select>
     <b-button type="button" @click="flipCamera">Upload Image</b-button>
     <b-button type="button" @click="register()">Register</b-button>
+    <b-alert
+      v-model="alert.showDismissibleAlert"
+      variant="danger"
+      dismissible
+    >{{alert.alertContent}}</b-alert>
     <Webcam v-if="camera === true" @capture="oncapturechild" />
   </div>
 </template>
@@ -39,7 +34,11 @@ export default {
       },
       response: "",
       camera: false,
-      image: null
+      image: null,
+      alert: {
+        showDismissibleAlert: false,
+        alertContent: ""
+      }
     };
   },
   methods: {
@@ -58,7 +57,13 @@ export default {
               "Content-Type": "multipart/form-data"
             }
           })
-          .then(res => console.log(res))
+          .then(res => {
+            console.log(res);
+            if (res.data.error) {
+              this.alert.alertContent = res.data.error;
+              this.alert.showDismissibleAlert = true;
+            }
+          })
           .catch(err => console.log(err));
       }
     },

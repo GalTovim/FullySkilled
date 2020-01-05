@@ -19,8 +19,6 @@
         <div class="row">
           <div class="col-md-12">
             <button type="button" class="btn btn-primary" @click="onCapture">Capture Photo</button>
-            <button type="button" class="btn btn-danger" @click="onStop">Stop Camera</button>
-            <button type="button" class="btn btn-success" @click="onStart">Start Camera</button>
           </div>
         </div>
       </div>

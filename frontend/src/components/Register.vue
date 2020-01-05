@@ -1,14 +1,24 @@
 <template>
   <div id="register">
     <h1>Register</h1>
-    <input type="text" name="username" v-model="input.username" placeholder="Username" />
-    <input type="password" name="password" v-model="input.password" placeholder="Password" />
+    <b-form-input
+      type="text"
+      name="username"
+      v-model="input.username"
+      placeholder="Username"
+    />
+    <b-form-input
+      type="password"
+      name="password"
+      v-model="input.password"
+      placeholder="Password"
+    />
     <select name="roles" v-model="input.role">
       <option value="Employee">Employee</option>
       <option value="Employer">Employer</option>
     </select>
-    <button type="button" @click="flipCamera">Upload Image</button>
-    <button type="button" @click="register()">Register</button>
+    <b-button type="button" @click="flipCamera">Upload Image</b-button>
+    <b-button type="button" @click="register()">Register</b-button>
     <Webcam v-if="camera === true" @capture="oncapturechild" />
   </div>
 </template>
@@ -86,4 +96,4 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

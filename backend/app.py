@@ -10,9 +10,8 @@ from werkzeug.utils import secure_filename
 import face_recognition
 from mongoengine.errors import NotUniqueError, DoesNotExist
 
-from models import *
+from backend.models import *
 
-PHOTO_FOLDER = './photos'
 
 app = Flask(__name__)
 CORS(app)
@@ -21,7 +20,6 @@ app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['MONGODB_HOST'] = 'mongodb+srv://tar:FullySkilled@cluster0-byfy8.mongodb.net/FullySkilled?retryWrites=true' \
                              '&w=majority'
-app.config['UPLOAD_FOLDER'] = PHOTO_FOLDER
 
 db = MongoEngine(app)
 
@@ -30,7 +28,13 @@ db = MongoEngine(app)
 def register():
     content = request.form
     user = User(username=content['username'],
-                password=content['password'], role=content['role'])
+                password=content['password'],
+                role=content['role'],
+                email=content['email'],
+                lastname=content['lastname'],
+                firstname=content['firstname'],
+                phone=content['phone'],
+                id=content['id'])
     photo = request.files['photo']
     if 'photo' in request.files:
         user.photo.put(photo)
@@ -126,6 +130,16 @@ def apply_job():
     job = business.jobs.filter(title=content['title'])[0]
     job.applicants.append(content['username'])
     return jsonify({'status': 200, 'message': 'Applied for job'})
+
+
+@app.route('/api/addQuestion', methods=['POST'])
+def add_question():
+    content = request.form
+    count = Faq.objects.count()
+    count += 1
+    faq = Faq(question=content['question'], answer=content['answer'], number=count)
+    faq.save()
+    return jsonify({'status': 200, 'message': 'Question added'})
 
 
 if __name__ == '__main__':

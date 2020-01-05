@@ -29,14 +29,15 @@ def register():
     content = request.form
     user = User(username=content['username'],
                 password=content['password'],
-                role=content['role'],
-                email=content['email'],
-                lastname=content['lastname'],
-                firstname=content['firstname'],
-                phone=content['phone'],
-                id=content['id'])
+                role=content['role'])
     photo = request.files['photo']
     if 'photo' in request.files:
+        unknown_image = face_recognition.load_image_file(request.files['photo'])
+        try:
+            unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
+        except IndexError:
+            return jsonify({'status': '400', 'error': 'No face in image'})
+
         user.photo.put(photo)
     try:
         user.save()
@@ -52,8 +53,7 @@ def login():
     if 'photo' in request.files:
         unknown_image = face_recognition.load_image_file(request.files['photo'])
         try:
-            unknown_face_encoding = face_recognition.face_encodings(unknown_image)[
-                0]
+            unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
         except IndexError:
             return jsonify({'status': '400', 'error': 'No face in image'})
 
@@ -69,7 +69,8 @@ def login():
         else:
             index = [i for i, val in enumerate(results) if val][0]
             k = list(known_faces.keys())
-            return jsonify({'status': 200, 'message': 'Face is {0}'.format(k[index])})
+            return jsonify({'status': 200, 'message': 'Face is {0}'.format(k[index]),
+                            'user': User.objects.get(username=k[index])})
     else:
         try:
             user = User.objects.get(username=content['username'])

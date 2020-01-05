@@ -9,11 +9,10 @@ class User(Document):
     username = StringField(required=True, unique=True)
     password = StringField(required=True)
     role = StringField(required=True, choices=Roles)
-    email = StringField(required=True)
-    phone = StringField(required=True)
-    id = StringField(required=True)
-    firstname = StringField(required=True)
-    lastname = StringField(required=True)
+    email = StringField()
+    phone = StringField()
+    firstname = StringField()
+    lastname = StringField()
 
     # Employee fields
     cv = FileField()

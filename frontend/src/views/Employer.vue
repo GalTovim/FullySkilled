@@ -3,8 +3,20 @@
     <h1>Employer Page</h1>
   </div>
 </template>
+
 <script>
-export default {};
+export default {
+  name: "employer",
+  data() {
+    return {
+      input: {
+        bussinessname: "",
+        bussinessaddress: ""
+      }
+    };
+  },
+  methods() {}
+};
 </script>
 
 <style scoped>

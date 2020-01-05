@@ -18,6 +18,8 @@
 import axios from "axios";
 import Webcam from "./Webcam";
 
+import router from "../router";
+
 export default {
   name: "login",
   components: { Webcam },

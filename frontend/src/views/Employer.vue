@@ -5,10 +5,22 @@
 <script>
 export default {
    name: "employer",
+data(){
+    return{
+        input:{
+            bussinessname:
+
+        }
+
+    }
+
+},
+methods(){
+
+}
 
 
 
-   
 }
 </script>
 

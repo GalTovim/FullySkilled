@@ -63,9 +63,18 @@ export default {
               this.alert.showDismissibleAlert = true;
             } else {
               const role = res.data.user.role;
-              if (role === "Admin") router.push({ name: "admin" });
-              else if (role === "Employer") router.push({ name: "employer" });
-              else if (role === "Employee") router.push({ name: "employee" });
+              if (role === "Admin")
+                router.push({ name: "admin", params: { user: res.data.user } });
+              else if (role === "Employer")
+                router.push({
+                  name: "employer",
+                  params: { user: res.data.user }
+                });
+              else if (role === "Employee")
+                router.push({
+                  name: "employee",
+                  params: { user: res.data.user }
+                });
             }
           })
           .catch(err => console.log(err));

@@ -1,12 +1,13 @@
 <template>
   <div>
-    <h1>Employer Page</h1>
+    <h1>Welcome {{user}}</h1>
   </div>
 </template>
 
 <script>
 export default {
   name: "employer",
+  props: ["user"],
   data() {
     return {
       input: {

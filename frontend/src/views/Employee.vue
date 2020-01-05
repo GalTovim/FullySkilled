@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1>Employee Page</h1>
+    <h1>Welcome {{user.username}}</h1>
   </div>
 </template>
 
 <script>
 export default {
   name: "employee",
-
+  props: ["user"],
   data() {
     return {};
   },

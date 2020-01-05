@@ -16,17 +16,20 @@ const routes = [
   {
     path: "/admin",
     name: "admin",
-    component: Admin
+    component: Admin,
+    props: true
   },
   {
     path: "/employer",
     name: "employer",
-    component: Employer
+    component: Employer,
+    props: true
   },
   {
     path: "/employee",
     name: "employee",
-    component: Employee
+    component: Employee,
+    props: true
   }
 ];
 

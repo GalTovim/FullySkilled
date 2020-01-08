@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 import face_recognition
 from mongoengine.errors import NotUniqueError, DoesNotExist
 
-from backend.models import *
+from models import *
 
 
 app = Flask(__name__)

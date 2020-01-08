@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     addbussiness() {
-        const path = "http://localhost:5000/api/Employer";
+        const path = "http://localhost:5000/api/addBussiness";
 
         if (this.input.bussinessname && this.input.bussinessaddress && this.input.office && this.input.typejob && this.input.salary )  {
             const formData = new FormData();

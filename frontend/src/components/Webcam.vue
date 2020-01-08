@@ -1,11 +1,10 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6" v-if="show === true">
         <div class="border">
           <vue-web-cam
             ref="webcam"
-            v-if="show === true"
             :device-id="deviceId"
             width="100%"
             @started="onStarted"

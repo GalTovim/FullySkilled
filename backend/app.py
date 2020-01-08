@@ -29,9 +29,11 @@ def register():
                 role=content['role'])
     photo = request.files['photo']
     if 'photo' in request.files:
-        unknown_image = face_recognition.load_image_file(request.files['photo'])
+        unknown_image = face_recognition.load_image_file(
+            request.files['photo'])
         try:
-            unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
+            unknown_face_encoding = face_recognition.face_encodings(unknown_image)[
+                0]
         except IndexError:
             return jsonify({'status': '400', 'error': 'No face in image'})
 
@@ -48,9 +50,11 @@ def register():
 def login():
     content = request.form
     if 'photo' in request.files:
-        unknown_image = face_recognition.load_image_file(request.files['photo'])
+        unknown_image = face_recognition.load_image_file(
+            request.files['photo'])
         try:
-            unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
+            unknown_face_encoding = face_recognition.face_encodings(unknown_image)[
+                0]
         except IndexError:
             return jsonify({'status': '400', 'error': 'No face in image'})
 
@@ -135,9 +139,16 @@ def add_question():
     content = request.form
     count = Faq.objects.count()
     count += 1
-    faq = Faq(question=content['question'], answer=content['answer'], number=count)
+    faq = Faq(question=content['question'],
+              answer=content['answer'], number=count)
     faq.save()
     return jsonify({'status': 200, 'message': 'Question added'})
+
+
+@app.route('/api/getQuestions', methods=['GET'])
+def get_questions():
+    questions = Faq.objects()
+    return jsonify({'status': 200, 'questions': questions})
 
 
 if __name__ == '__main__':

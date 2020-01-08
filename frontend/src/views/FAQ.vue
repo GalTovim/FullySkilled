@@ -7,3 +7,22 @@
     </ul>
   </div>
 </template>
+
+<script>
+import Faqitem from "../components/FaqItem";
+import axios from "axios";
+export default {
+  name: "faq",
+  components: { Faqitem },
+  data() {
+    return {};
+  },
+  beforeMount() {
+    const path = "http://localhost:5000/api/getQuestions";
+
+    axios.get(path).then(res => {
+      questions;
+    });
+  }
+};
+</script>

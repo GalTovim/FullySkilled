@@ -151,5 +151,23 @@ def get_questions():
     return jsonify({'status': 200, 'questions': questions})
 
 
+@app.route('/api/admin/getBusinesses', methods=['GET'])
+def admin_get_businesses():
+    businesses = Business.objects()
+    return jsonify({'status': 200, 'businesses': businesses})
+
+
+@app.route('/api/admin/getEmployees', methods=['GET'])
+def admin_get_employees():
+    users = User.objects.get(role="Employee")
+    return jsonify({'status': 200, 'users': users})
+
+
+@app.route('/api/admin/getEmployers', methods=['GET'])
+def admin_get_employers():
+    users = User.objects.get(role="Employer")
+    return jsonify({'status': 200, 'users': users})
+
+
 if __name__ == '__main__':
     app.run()

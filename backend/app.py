@@ -159,13 +159,13 @@ def admin_get_businesses():
 
 @app.route('/api/admin/getEmployees', methods=['GET'])
 def admin_get_employees():
-    users = User.objects.get(role="Employee")
+    users = User.objects.filter(role="Employee")
     return jsonify({'status': 200, 'users': users})
 
 
 @app.route('/api/admin/getEmployers', methods=['GET'])
 def admin_get_employers():
-    users = User.objects.get(role="Employer")
+    users = User.objects.filter(role="Employer")
     return jsonify({'status': 200, 'users': users})
 
 

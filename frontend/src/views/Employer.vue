@@ -12,7 +12,9 @@ export default {
     return {
       input: {
         bussinessname: "",
-        bussinessaddress: ""
+        bussinessaddress: "",
+        office: "", //anaf misra
+        typejob: "",
       }
     };
   },

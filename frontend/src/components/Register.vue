@@ -8,7 +8,7 @@
       <option value="Employer">Employer</option>
     </b-form-select>
     <b-button type="button" @click="flipCamera">Upload Image</b-button>
-    <b-button type="button" @click="register()">Register</b-button>
+    <b-button type="button" variant="success" @click="register()">Register</b-button>
     <b-alert
       v-model="alert.showDismissibleAlert"
       variant="danger"

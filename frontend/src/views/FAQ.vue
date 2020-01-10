@@ -43,7 +43,6 @@
 <script>
 import Navbar from "../components/Nav";
 import Faqitem from "../components/FaqItem";
-import store from "../store";
 import { mapState } from "vuex";
 
 import axios from "axios";

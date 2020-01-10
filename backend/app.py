@@ -169,5 +169,11 @@ def admin_get_employers():
     return jsonify({'status': 200, 'users': users})
 
 
+@app.route('/api/getJobs', methods=['GET'])
+def get_jobs():
+    jobs = Business.objects.distinct(field='jobs')
+    return jsonify({'jobs': jobs})
+
+
 if __name__ == '__main__':
     app.run()

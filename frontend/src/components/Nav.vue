@@ -1,8 +1,9 @@
 <template>
   <div>
     <b-navbar type="dark" variant="dark">
+      <b-navbar-brand>FullySkilled</b-navbar-brand>
       <b-navbar-nav>
-        <b-nav-item :to="'/'+this.user.role">{{this.user.role}}</b-nav-item>
+        <b-nav-item :to="'/'+this.user.role">Home</b-nav-item>
         <b-nav-item to="/faq">FAQ</b-nav-item>
       </b-navbar-nav>
     </b-navbar>

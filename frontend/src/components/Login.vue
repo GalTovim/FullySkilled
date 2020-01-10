@@ -19,6 +19,7 @@ import axios from "axios";
 import Webcam from "./Webcam";
 
 import router from "../router";
+import store from "../store";
 
 export default {
   name: "login",
@@ -63,17 +64,15 @@ export default {
               this.alert.showDismissibleAlert = true;
             } else {
               const role = res.data.user.role;
-              if (role === "Admin")
-                router.push({ name: "admin", params: { user: res.data.user } });
+              store.commit("updateUser", res.data.user);
+              if (role === "Admin") router.push({ name: "admin" });
               else if (role === "Employer")
                 router.push({
-                  name: "employer",
-                  params: { user: res.data.user }
+                  name: "employer"
                 });
               else if (role === "Employee")
                 router.push({
-                  name: "employee",
-                  params: { user: res.data.user }
+                  name: "employee"
                 });
             }
           })

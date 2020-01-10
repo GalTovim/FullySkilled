@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Navbar :role="user.role" />
     <ul class="questions-list">
       <b-card-group v-for="faq in faqs" v-bind:key="faq.id">
         <Faqitem v-bind:question="faq.question" v-bind:answer="faq.answer" />
@@ -40,11 +41,16 @@
 </template>
 
 <script>
+import Navbar from "../components/Nav";
 import Faqitem from "../components/FaqItem";
+import store from "../store";
+import { mapState } from "vuex";
+
 import axios from "axios";
+
 export default {
   name: "faq",
-  components: { Faqitem },
+  components: { Faqitem, Navbar },
   data() {
     return {
       faqs: [],
@@ -96,6 +102,9 @@ export default {
       });
       this.$router.go();
     }
+  },
+  computed: {
+    ...mapState(["user"])
   },
   beforeMount() {
     const path = "http://localhost:5000/api/getQuestions";

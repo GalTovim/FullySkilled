@@ -1,17 +1,20 @@
 <template>
   <div>
     <Navbar role="employer" />
-    <h1>Welcome {{user.username}}</h1>
+    <h1>Welcome {{this.user.username}}</h1>
   </div>
 </template>
 
 <script>
 import Navbar from "../components/Nav";
+import { mapState } from "vuex";
 
 export default {
   name: "employer",
   components: { Navbar },
-  props: ["user"],
+  computed: {
+    ...mapState(["user"])
+  },
   data() {
     return {
       input: {
@@ -20,7 +23,7 @@ export default {
       }
     };
   },
-  methods() {}
+  methods: {}
 };
 </script>
 

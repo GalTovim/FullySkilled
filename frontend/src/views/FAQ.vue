@@ -16,14 +16,25 @@
       @hidden="resetModal"
       @ok="handleOk"
     >
-      <b-form-group
-        :state="nameState"
-        label="Name"
-        label-for="name-input"
-        invalid-feedback="Name is required"
-      >
-        <b-form-input id="name-input" v-model="name" :state="nameState" required></b-form-input>
-      </b-form-group>
+      <form ref="form" @submit.stop.prevent="handleSubmit">
+        <b-form-group
+          :state="questionState"
+          label="Question"
+          label-for="question-input"
+          invalid-feedback="Question is required"
+        >
+          <b-form-input id="question-input" v-model="question" :state="questionState" required></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          :state="answerState"
+          label="Answer"
+          label-for="answer-input"
+          invalid-feedback="Answer is required"
+        >
+          <b-form-input id="answer-input" v-model="answer" :state="answerState" required></b-form-input>
+        </b-form-group>
+      </form>
     </b-modal>
   </div>
 </template>
@@ -35,7 +46,56 @@ export default {
   name: "faq",
   components: { Faqitem },
   data() {
-    return { faqs: [] };
+    return {
+      faqs: [],
+      question: "",
+      answer: "",
+      questionState: null,
+      answerState: null
+    };
+  },
+  methods: {
+    resetModal() {
+      this.question = "";
+      this.answer = "";
+      this.questionState = null;
+      this.answerState = null;
+    },
+    checkFormValidity() {
+      const valid = this.$refs.form.checkValidity();
+      this.questionState = valid ? "valid" : "invalid";
+      this.answerState = valid ? "valid" : "invalid";
+      return valid;
+    },
+    handleOk(bvModalEvt) {
+      // Prevent modal from closing
+      bvModalEvt.preventDefault();
+      // Trigger submit handler
+      this.handleSubmit();
+    },
+    handleSubmit() {
+      // Exit when the form isn't valid
+      if (!this.checkFormValidity()) {
+        return;
+      }
+
+      const path = "http://localhost:5000/api/addQuestion";
+
+      const formData = new FormData();
+      formData.append("question", this.question);
+      formData.append("answer", this.answer);
+
+      axios.post(path, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
+      // Hide the modal manually
+      this.$nextTick(() => {
+        this.$refs.modal.hide();
+      });
+      this.$router.go();
+    }
   },
   beforeMount() {
     const path = "http://localhost:5000/api/getQuestions";

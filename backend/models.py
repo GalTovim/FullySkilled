@@ -26,6 +26,8 @@ class Job(EmbeddedDocument):
     description = StringField()
     applicants = ListField(StringField())
     priority = BooleanField()
+    address = StringField()
+    business = StringField()
 
 
 class Business(Document):
@@ -42,4 +44,3 @@ class Faq(Document):
     answer = StringField(required=True)
     number = IntField()
     meta = {'collection': 'FAQ'}
-

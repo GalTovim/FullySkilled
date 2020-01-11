@@ -103,7 +103,8 @@ def add_job():
     business = Business.objects.get(name=content['businessname'])
     if business.owner.username != content['username']:
         return jsonify({'status': 401, 'error': 'You can only add a job to your business'})
-    job = Job(title=content['title'])
+    job = Job(title=content['title'],
+              business=business.name, address=business.address)
     if 'description' in content:
         job.description = content['description']
     try:

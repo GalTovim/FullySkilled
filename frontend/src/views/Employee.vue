@@ -1,14 +1,14 @@
 <template>
   <div>
     <Navbar role="employee" />
-    <h1>Welcome {{this.user.username}}</h1>
+    <h1>Here are jobs for you {{this.user.username}}</h1>
     <JobItem
       v-for="job in jobs"
       :key="job.id"
       :title="job.title"
       :business="job.business"
       :description="job.description"
-      :location="job.location"
+      :location="job.address"
     />
   </div>
 </template>

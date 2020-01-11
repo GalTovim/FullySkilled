@@ -130,6 +130,7 @@ def apply_job():
     business = Business.objects.get(name=content['businessname'])
     job = business.jobs.filter(title=content['title'])[0]
     job.applicants.append(content['username'])
+    business.save()
     return jsonify({'status': 200, 'message': 'Applied for job'})
 
 

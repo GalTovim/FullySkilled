@@ -21,6 +21,8 @@
 <script>
 import axios from "axios";
 import Webcam from "./Webcam";
+import router from "../router";
+import store from "../store";
 
 export default {
   name: "register",
@@ -62,6 +64,18 @@ export default {
             if (res.data.error) {
               this.alert.alertContent = res.data.error;
               this.alert.showDismissibleAlert = true;
+            } else {
+              const role = res.data.user.role;
+              store.commit("updateUser", res.data.user);
+              if (role === "Admin") router.push({ name: "admin" });
+              else if (role === "Employer")
+                router.push({
+                  name: "employer"
+                });
+              else if (role === "Employee")
+                router.push({
+                  name: "employee"
+                });
             }
           })
           .catch(err => console.log(err));

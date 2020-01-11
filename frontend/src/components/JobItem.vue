@@ -1,17 +1,17 @@
 <template>
   <div>
     <b-card :title="title">
-      <ul>
-        <li>
+      <b-list-group>
+        <b-list-group-item>
           <b-card-text>Employer: {{business}}</b-card-text>
-        </li>
-        <li>
+        </b-list-group-item>
+        <b-list-group-item>
           <b-card-text>Job description: {{description}}</b-card-text>
-        </li>
-        <li>
+        </b-list-group-item>
+        <b-list-group-item>
           <b-card-text>Located in: {{location}}</b-card-text>
-        </li>
-      </ul>
+        </b-list-group-item>
+      </b-list-group>
       <b-alert variant="success" dismissible v-model="show">Applied to job</b-alert>
 
       <b-button @click="apply">Apply</b-button>

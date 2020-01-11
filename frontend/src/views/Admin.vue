@@ -11,6 +11,7 @@
 <script>
 import Navbar from "../components/Nav";
 import { mapState } from "vuex";
+import axios from "axios";
 
 export default {
   name: "admin",

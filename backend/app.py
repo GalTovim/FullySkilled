@@ -175,5 +175,14 @@ def get_jobs():
     return jsonify({'jobs': jobs})
 
 
+@app.route('/api/admin', methods=['GET'])
+def admin():
+    users = User.objects.count()
+    businesses = Business.objects.count()
+    faqs = Faq.objects.count()
+    jobs = len(Business.objects.distinct(field='jobs'))
+    return jsonify({'users': users, 'businesses': businesses, 'faqs': faqs, 'jobs': jobs})
+
+
 if __name__ == '__main__':
     app.run()

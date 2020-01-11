@@ -21,8 +21,19 @@ export default {
   },
   data() {
     return {
-      items: []
+      items: {}
     };
+  },
+  beforeMount() {
+    const path = "http://localhost:5000/api/admin";
+
+    axios
+      .get(path)
+      .then(res => {
+        console.log(res);
+        this.items = res.data;
+      })
+      .catch(err => console.log(err));
   },
   methods: {}
 };

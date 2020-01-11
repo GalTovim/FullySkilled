@@ -1,6 +1,8 @@
 <template>
   <div>
-    <b-card v-bind:title="question">{{answer}}</b-card>
+    <b-card v-bind:title="question">
+      <b-card-text>{{answer}}</b-card-text>
+    </b-card>
   </div>
 </template>
 

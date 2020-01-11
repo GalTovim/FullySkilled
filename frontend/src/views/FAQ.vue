@@ -2,11 +2,13 @@
   <div>
     <Navbar :role="user.role" />
     <ul class="questions-list">
-      <b-card-group v-for="faq in faqs" v-bind:key="faq.id">
-        <Faqitem v-bind:question="faq.question" v-bind:answer="faq.answer" />
-      </b-card-group>
+      <li v-for="faq in faqs" v-bind:key="faq.id">
+        <b-card-group>
+          <Faqitem v-bind:question="faq.question" v-bind:answer="faq.answer" />
+        </b-card-group>
 
-      <b-button v-b-modal.modal-prevent-closing>Add Question</b-button>
+        <b-button v-b-modal.modal-prevent-closing>Add Question</b-button>
+      </li>
     </ul>
 
     <b-modal

@@ -1,6 +1,10 @@
 <template>
   <div>
     <Navbar role="admin" />
+    <h1>System Report</h1>
+    <b-list-group>
+      <b-list-group-item v-for="(value, key) in items" :key="key.id">Number of {{key}}: {{value}}</b-list-group-item>
+    </b-list-group>
   </div>
 </template>
 

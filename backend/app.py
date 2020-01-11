@@ -27,7 +27,6 @@ def register():
     user = User(username=content['username'],
                 password=content['password'],
                 role=content['role'])
-    photo = request.files['photo']
     if 'photo' in request.files:
         unknown_image = face_recognition.load_image_file(
             request.files['photo'])

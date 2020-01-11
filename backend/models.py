@@ -22,7 +22,7 @@ class User(Document):
 
 
 class Job(EmbeddedDocument):
-    title = StringField(required=True, unique=True)
+    title = StringField(required=True)
     description = StringField()
     applicants = ListField(StringField())
     priority = BooleanField()

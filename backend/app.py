@@ -36,7 +36,7 @@ def register():
         except IndexError:
             return jsonify({'status': '400', 'error': 'No face in image'})
 
-        user.photo.put(photo)
+        user.photo = request.files['photo']
     try:
         user.save()
     except NotUniqueError:

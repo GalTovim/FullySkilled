@@ -67,7 +67,7 @@ def login():
             return jsonify({'status': '400', 'error': 'No face in image'})
 
         known_faces = OrderedDict()
-        for user in User.objects():
+        for user in User.objects.find({'photo': {'$ne': 'null'}}):
             known_faces[user.username] = face_recognition.face_encodings(
                 face_recognition.load_image_file(user.photo))[0]
 

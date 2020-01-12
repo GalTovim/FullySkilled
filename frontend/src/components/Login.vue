@@ -1,10 +1,17 @@
 <template>
   <div id="login">
     <h1>Login</h1>
-    <b-form-input type="text" name="username" v-model="input.username" placeholder="Username" />
-    <b-form-input type="password" name="password" v-model="input.password" placeholder="Password" />
-    <b-button type="button" @click="flipCamera">Face Login</b-button>
-    <b-button type="button" variant="success" @click="login()">Login</b-button>
+    <b-container>
+      <b-form-input type="text" name="username" v-model="input.username" placeholder="Username" />
+      <b-form-input
+        type="password"
+        name="password"
+        v-model="input.password"
+        placeholder="Password"
+      />
+      <b-button type="button" @click="flipCamera">Face Login</b-button>
+      <b-button type="button" variant="success" @click="login()">Login</b-button>
+    </b-container>
 
     <b-alert
       v-model="alert.showDismissibleAlert"

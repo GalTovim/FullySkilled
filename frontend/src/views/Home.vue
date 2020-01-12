@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <img src="../../public/fullyskilled.png" />
     <div v-if="this.hasAccount === false">
       <Register />
       <b-button @click="flipHasAccount()">I have an account</b-button>

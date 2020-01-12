@@ -98,9 +98,14 @@ def add_business():
     if user.role != 'Employer':
         return jsonify({'status': 401, 'error': 'Only employers can add their business'})
     business = Business(name=content['businessname'], owner=user)
-    if 'address' in content:
-        business.address = content['address']
-        business.save()
+    if 'city' in content:
+        business.city = content['city']
+    if 'street' in content:
+        business.street = content['street']
+    if 'apartment' in content:
+        business.apartment = content['apartment']
+    business.save()
+
     # except NotUniqueError:
     #     return jsonify({'status': 400, 'error': 'Business name already exists'})
     return jsonify({'status': 200, 'message': 'Business added successfully'})
@@ -113,7 +118,7 @@ def add_job():
     if business.owner.username != content['username']:
         return jsonify({'status': 401, 'error': 'You can only add a job to your business'})
     job = Job(title=content['title'],
-              business=business.name, address=business.address)
+              business=business.name, address='{0} {1} {2}'.format(business.city,business.street, business.apartment))
     if 'description' in content:
         job.description = content['description']
     try:

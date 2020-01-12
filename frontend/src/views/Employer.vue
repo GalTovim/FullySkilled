@@ -13,6 +13,7 @@
     />
 
     <b-modal
+      v-if="showModal"
       id="modal-prevent-closing"
       ref="modal"
       title="Enter business details"
@@ -59,7 +60,7 @@
       </form>
     </b-modal>
 
-    <b-button v-b-modal.modal-prevent-closing>Add Business</b-button>
+    <b-button v-b-modal.modal-prevent-closing @click="showModal = true">Add Business</b-button>
   </div>
 </template>
 
@@ -86,7 +87,8 @@ export default {
       name: "",
       city: "",
       apartment: "",
-      street: ""
+      street: "",
+      showModal: false
     };
   },
   methods: {
@@ -144,6 +146,7 @@ export default {
       this.$nextTick(() => {
         this.$refs.modal.hide();
       });
+      this.showModal = false;
       this.getBusinesses();
       // this.$router.go();
     }

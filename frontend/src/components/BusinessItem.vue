@@ -6,9 +6,10 @@
         <b-list-group-item>Jobs:</b-list-group-item>
         <b-list-group-item v-for="job in jobs" :key="job.id">
           {{job.title}}: {{job.description}}
-          <ul>
-            <li v-for="item in job.applicants" :key="item.id">{{item}}</li>
-          </ul>
+          <b-list-group>
+            <b-list-group-item>Applicants:</b-list-group-item>
+            <b-list-group-item v-for="item in job.applicants" :key="item.id">{{item}}</b-list-group-item>
+          </b-list-group>
         </b-list-group-item>
       </b-list-group>
       <b-button @click="addJob">Add Job</b-button>

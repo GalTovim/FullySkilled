@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Admin from "../views/Admin.vue";
 import Employer from "../views/Employer";
 import Employee from "../views/Employee";
+import Faq from "../views/FAQ";
 
 Vue.use(VueRouter);
 
@@ -16,20 +17,22 @@ const routes = [
   {
     path: "/admin",
     name: "admin",
-    component: Admin,
-    props: true
+    component: Admin
   },
   {
     path: "/employer",
     name: "employer",
-    component: Employer,
-    props: true
+    component: Employer
   },
   {
     path: "/employee",
     name: "employee",
-    component: Employee,
-    props: true
+    component: Employee
+  },
+  {
+    path: "/faq",
+    name: "faq",
+    component: Faq
   }
 ];
 

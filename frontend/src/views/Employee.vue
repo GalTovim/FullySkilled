@@ -1,15 +1,42 @@
 <template>
   <div>
-    <h1>Welcome {{user.username}}</h1>
+    <Navbar role="employee" />
+    <h1>Here are jobs for you {{this.user.username}}</h1>
+    <JobItem
+      v-for="job in jobs"
+      :key="job.id"
+      :title="job.title"
+      :business="job.business"
+      :description="job.description"
+      :location="job.address"
+    />
   </div>
 </template>
 
 <script>
+import Navbar from "../components/Nav";
+import JobItem from "../components/JobItem";
+import { mapState } from "vuex";
+
+import axios from "axios";
+
 export default {
   name: "employee",
-  props: ["user"],
+  components: { Navbar, JobItem },
+  computed: {
+    ...mapState(["user"])
+  },
   data() {
-    return {};
+    return {
+      jobs: []
+    };
+  },
+  beforeMount() {
+    const path = "http://localhost:5000/api/getJobs";
+
+    axios.get(path).then(res => {
+      this.jobs = res.data.jobs;
+    });
   },
   methods: {}
 };

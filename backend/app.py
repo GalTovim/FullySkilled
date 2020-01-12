@@ -27,7 +27,6 @@ def register():
     user = User(username=content['username'],
                 password=content['password'],
                 role=content['role'])
-    photo = request.files['photo']
     if 'photo' in request.files:
         unknown_image = face_recognition.load_image_file(
             request.files['photo'])
@@ -37,7 +36,7 @@ def register():
         except IndexError:
             return jsonify({'status': '400', 'error': 'No face in image'})
 
-        user.photo.put(photo)
+        user.photo = request.files['photo']
     try:
         user.save()
     except NotUniqueError:
@@ -91,11 +90,10 @@ def add_business():
         return jsonify({'status': 401, 'error': 'Only employers can add their business'})
     business = Business(name=content['businessname'], owner=user)
     if 'address' in content:
-        business.address.put(content['address'])
-    try:
+        business.address = content['address']
         business.save()
-    except NotUniqueError:
-        return jsonify({'status': 400, 'error': 'Business name already exists'})
+    # except NotUniqueError:
+    #     return jsonify({'status': 400, 'error': 'Business name already exists'})
     return jsonify({'status': 200, 'message': 'Business added successfully'})
 
 
@@ -105,9 +103,10 @@ def add_job():
     business = Business.objects.get(name=content['businessname'])
     if business.owner.username != content['username']:
         return jsonify({'status': 401, 'error': 'You can only add a job to your business'})
-    job = Job(title=content['title'])
+    job = Job(title=content['title'],
+              business=business.name, address=business.address)
     if 'description' in content:
-        job.description.put(content['description'])
+        job.description = content['description']
     try:
         business.update(add_to_set__jobs=job)
     except NotUniqueError:
@@ -131,6 +130,7 @@ def apply_job():
     business = Business.objects.get(name=content['businessname'])
     job = business.jobs.filter(title=content['title'])[0]
     job.applicants.append(content['username'])
+    business.save()
     return jsonify({'status': 200, 'message': 'Applied for job'})
 
 
@@ -167,6 +167,21 @@ def admin_get_employees():
 def admin_get_employers():
     users = User.objects.filter(role="Employer")
     return jsonify({'status': 200, 'users': users})
+
+
+@app.route('/api/getJobs', methods=['GET'])
+def get_jobs():
+    jobs = Business.objects.distinct(field='jobs')
+    return jsonify({'jobs': jobs})
+
+
+@app.route('/api/admin', methods=['GET'])
+def admin():
+    users = User.objects.count()
+    businesses = Business.objects.count()
+    faqs = Faq.objects.count()
+    jobs = len(Business.objects.distinct(field='jobs'))
+    return jsonify({'users': users, 'businesses': businesses, 'faqs': faqs, 'jobs': jobs})
 
 
 if __name__ == '__main__':

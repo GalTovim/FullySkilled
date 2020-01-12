@@ -12,10 +12,15 @@
 
 <script>
 import axios from "axios";
+import Navbar from "../components/Nav";
+import { mapState } from "vuex";
 
 export default {
   name: "employer",
-  props: ["user"],
+  components: { Navbar },
+  computed: {
+    ...mapState(["user"])
+  },
   data() {
     return {
       input: {

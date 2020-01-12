@@ -9,10 +9,14 @@ class User(Document):
     username = StringField(required=True, unique=True)
     password = StringField(required=True)
     role = StringField(required=True, choices=Roles)
+    city = StringField()
+    street = StringField()
+    apartment = IntField()
     email = StringField()
     phone = StringField()
     firstname = StringField()
     lastname = StringField()
+    idnum = StringField()
 
     # Employee fields
     cv = FileField()
@@ -32,8 +36,9 @@ class Job(EmbeddedDocument):
 
 class Business(Document):
     name = StringField(required=True, unique=True)
-    address = StringField()
     city = StringField()
+    street = StringField()
+    apartment = IntField()
     owner = ReferenceField(User, required=True)
     jobs = EmbeddedDocumentListField(Job)
     meta = {'collection': 'Businesses'}

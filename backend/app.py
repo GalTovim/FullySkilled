@@ -134,7 +134,7 @@ def get_businesses(username):
         user = User.objects.get(username=username)
     except DoesNotExist:
         return jsonify({'status': 404, 'error': 'User does not exist'})
-    businesses = Business.objects.get(owner=user)
+    businesses = Business.objects(owner=user)
     return jsonify({'status': 200, 'businesses': businesses})
 
 

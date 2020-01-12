@@ -1,47 +1,60 @@
 <template>
   <div id="register">
     <h1>Register</h1>
-    <b-form-input type="text" name="username" v-model="input.username" placeholder="Username" />
-    <b-form-input type="password" name="password" v-model="input.password" placeholder="Password" />
-    <b-form-input type="text" name="firstname" v-model="input.password" placeholder="First Name" />
-    <b-form-input type="text" name="lastname" v-model="input.lastname" placeholder="Last Name" />
-    <b-form-input type="email" name="email" v-model="input.email" placeholder="E-Mail" />
-    <b-form-input type="text" name="phone" v-model="input.phone" placeholder="Phone" />
+    <b-container>
+      <b-form-input type="text" name="username" v-model="input.username" placeholder="Username" />
+      <b-form-input
+        type="password"
+        name="password"
+        v-model="input.password"
+        placeholder="Password"
+      />
+      <b-form-input
+        type="text"
+        name="firstname"
+        v-model="input.firstname"
+        placeholder="First Name"
+      />
+      <b-form-input type="text" name="lastname" v-model="input.lastname" placeholder="Last Name" />
+      <b-form-input type="email" name="email" v-model="input.email" placeholder="E-Mail" />
+      <b-form-input type="text" name="phone" v-model="input.phone" placeholder="Phone" />
+      <b-form-input type="text" name="id" v-model="input.idnum" placeholder="ID" />
 
-    <b-form-input
-      v-if="input.role == 'Employee'"
-      type="text"
-      name="city"
-      v-model="input.city"
-      placeholder="City"
-    />
-    <b-form-input
-      v-if="input.role == 'Employee'"
-      type="text"
-      name="street"
-      placeholder="Street"
-      v-model="input.street"
-    />
-    <b-form-input
-      v-if="input.role == 'Employee'"
-      type="text"
-      name="apartment"
-      placeholder="Apartment"
-      v-model="input.apartment"
-    />
+      <b-form-input
+        v-if="input.role == 'Employee'"
+        type="text"
+        name="city"
+        v-model="input.city"
+        placeholder="City"
+      />
+      <b-form-input
+        v-if="input.role == 'Employee'"
+        type="text"
+        name="street"
+        placeholder="Street"
+        v-model="input.street"
+      />
+      <b-form-input
+        v-if="input.role == 'Employee'"
+        type="text"
+        name="apartment"
+        placeholder="Apartment"
+        v-model="input.apartment"
+      />
 
-    <b-form-select name="roles" v-model="input.role">
-      <option value="Employee">Employee</option>
-      <option value="Employer">Employer</option>
-    </b-form-select>
-    <b-button type="button" @click="flipCamera">Upload Image</b-button>
-    <b-button type="button" variant="success" @click="register()">Register</b-button>
-    <b-alert
-      v-model="alert.showDismissibleAlert"
-      variant="danger"
-      dismissible
-    >{{alert.alertContent}}</b-alert>
-    <Webcam v-if="camera === true" @capture="oncapturechild" />
+      <b-form-select name="roles" v-model="input.role">
+        <option value="Employee">Employee</option>
+        <option value="Employer">Employer</option>
+      </b-form-select>
+      <b-button type="button" @click="flipCamera">Upload Image</b-button>
+      <b-button type="button" variant="success" @click="register()">Register</b-button>
+      <b-alert
+        v-model="alert.showDismissibleAlert"
+        variant="danger"
+        dismissible
+      >{{alert.alertContent}}</b-alert>
+      <Webcam v-if="camera === true" @capture="oncapturechild" />
+    </b-container>
   </div>
 </template>
 
@@ -63,6 +76,7 @@ export default {
         lastname: "",
         email: "",
         phone: "",
+        idnum: "",
         role: "",
         city: "",
         street: "",
@@ -88,6 +102,7 @@ export default {
         formData.append("lastname", this.input.lastname);
         formData.append("email", this.input.email);
         formData.append("phone", this.input.phone);
+        formData.append("idnum", this.input.idnum);
         formData.append("role", this.input.role);
 
         if (this.input.role === "Employee") {
@@ -159,4 +174,8 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+b-form-input {
+  margin-top: 0.5;
+}
+</style>

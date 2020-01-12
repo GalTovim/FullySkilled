@@ -26,7 +26,16 @@ def register():
     content = request.form
     user = User(username=content['username'],
                 password=content['password'],
-                role=content['role'])
+                role=content['role'],
+                firstname=content['firstname'],
+                lastname=content['lastname'],
+                email=content['email'],
+                phone=content['phone'],
+                idnum=content['idnum'])
+    if content['role'] == 'Employee':
+        user.city = content['city']
+        user.street = content['street']
+        user.apartment = content['apartment']
     if 'photo' in request.files:
         unknown_image = face_recognition.load_image_file(
             request.files['photo'])

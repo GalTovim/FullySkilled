@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     getBusinesses() {
-      const path = "http://localhost:5000/api/getBusinesses/";
+      const path = "/api/getBusinesses/";
 
       axios.get(path + this.user.username).then(res => {
         console.log(res.data.businesses);
@@ -126,7 +126,7 @@ export default {
         return;
       }
 
-      const path = "http://localhost:5000/api/addBusiness";
+      const path = "/api/addBusiness";
 
       const formData = new FormData();
       formData.append("businessname", this.name);

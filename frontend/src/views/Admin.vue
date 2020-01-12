@@ -25,7 +25,7 @@ export default {
     };
   },
   beforeMount() {
-    const path = "http://localhost:5000/api/admin";
+    const path = "/api/admin";
 
     axios
       .get(path)

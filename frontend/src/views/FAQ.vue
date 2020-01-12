@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     getQuestions() {
-      const path = "http://localhost:5000/api/getQuestions";
+      const path = "/api/getQuestions";
 
       axios.get(path).then(res => {
         this.faqs.push(...res.data.questions);
@@ -84,7 +84,7 @@ export default {
         return;
       }
 
-      const path = "http://localhost:5000/api/addQuestion";
+      const path = "/api/addQuestion";
 
       const formData = new FormData();
       formData.append("question", this.question);

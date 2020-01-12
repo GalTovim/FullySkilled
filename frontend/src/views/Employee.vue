@@ -32,7 +32,7 @@ export default {
     };
   },
   beforeMount() {
-    const path = "http://localhost:5000/api/getJobs";
+    const path = "/api/getJobs";
 
     axios.get(path).then(res => {
       this.jobs = res.data.jobs;

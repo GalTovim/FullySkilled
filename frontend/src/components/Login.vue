@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     login() {
-      const path = "http://localhost:5000/api/login";
+      const path = "/api/login";
 
       if ((this.input.username && this.input.password) || this.image) {
         const formData = new FormData();

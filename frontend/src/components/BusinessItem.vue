@@ -38,7 +38,7 @@ export default {
   methods: {
     addJob() {},
     submitJob() {
-      const path = "http://localhost:5000/api/addJob";
+      const path = "/api/addJob";
 
       const formData = new FormData();
       formData.append("username", this.user.username);

@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     apply() {
-      const path = "http://localhost:5000/api/applyJob";
+      const path = "/api/applyJob";
       const formData = new FormData();
 
       formData.append("businessname", this.business);

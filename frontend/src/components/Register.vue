@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     register() {
-      const path = "http://localhost:5000/api/register";
+      const path = "/api/register";
       const formData = new FormData();
       if (this.input.username && this.input.password && this.input.role) {
         formData.append("username", this.input.username);

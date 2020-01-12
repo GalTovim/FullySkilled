@@ -3,6 +3,33 @@
     <h1>Register</h1>
     <b-form-input type="text" name="username" v-model="input.username" placeholder="Username" />
     <b-form-input type="password" name="password" v-model="input.password" placeholder="Password" />
+    <b-form-input type="text" name="firstname" v-model="input.password" placeholder="First Name" />
+    <b-form-input type="text" name="lastname" v-model="input.lastname" placeholder="Last Name" />
+    <b-form-input type="email" name="email" v-model="input.email" placeholder="E-Mail" />
+    <b-form-input type="text" name="phone" v-model="input.phone" placeholder="Phone" />
+
+    <b-form-input
+      v-if="input.role == 'Employee'"
+      type="text"
+      name="city"
+      v-model="input.city"
+      placeholder="City"
+    />
+    <b-form-input
+      v-if="input.role == 'Employee'"
+      type="text"
+      name="street"
+      placeholder="Street"
+      v-model="input.street"
+    />
+    <b-form-input
+      v-if="input.role == 'Employee'"
+      type="text"
+      name="apartment"
+      placeholder="Apartment"
+      v-model="input.apartment"
+    />
+
     <b-form-select name="roles" v-model="input.role">
       <option value="Employee">Employee</option>
       <option value="Employer">Employer</option>
@@ -32,7 +59,14 @@ export default {
       input: {
         username: "",
         password: "",
-        role: ""
+        firstname: "",
+        lastname: "",
+        email: "",
+        phone: "",
+        role: "",
+        city: "",
+        street: "",
+        apartment: ""
       },
       response: "",
       camera: false,
@@ -50,7 +84,17 @@ export default {
       if (this.input.username && this.input.password && this.input.role) {
         formData.append("username", this.input.username);
         formData.append("password", this.input.password);
+        formData.append("firstname", this.input.firstname);
+        formData.append("lastname", this.input.lastname);
+        formData.append("email", this.input.email);
+        formData.append("phone", this.input.phone);
         formData.append("role", this.input.role);
+
+        if (this.input.role === "Employee") {
+          formData.append("city", this.input.city);
+          formData.append("street", this.input.street);
+          formData.append("apartment", this.input.apartment);
+        }
         if (this.image) formData.append("photo", this.image, "user.jpeg");
 
         axios

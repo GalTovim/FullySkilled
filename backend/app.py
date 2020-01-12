@@ -118,7 +118,7 @@ def add_job():
     if business.owner.username != content['username']:
         return jsonify({'status': 401, 'error': 'You can only add a job to your business'})
     job = Job(title=content['title'],
-              business=business.name, address='{0} {1} {2}'.format(business.city,business.street, business.apartment))
+              business=business.name, address='{0} {1} {2}'.format(business.city, business.street, business.apartment))
     if 'description' in content:
         job.description = content['description']
     try:
@@ -135,7 +135,7 @@ def get_businesses(username):
     except DoesNotExist:
         return jsonify({'status': 404, 'error': 'User does not exist'})
     businesses = Business.objects.get(owner=user)
-    return jsonify({'status': 200, 'businesses': businesses.to_json()})
+    return jsonify({'status': 200, 'businesses': businesses})
 
 
 @app.route('/api/applyJob', methods=['POST'])

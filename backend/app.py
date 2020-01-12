@@ -154,8 +154,7 @@ def add_question():
     content = request.form
     count = Faq.objects.count()
     count += 1
-    faq = Faq(question=content['question'],
-              , number=count)
+    faq = Faq(question=content['question'],number=count)
     if 'answer' in content:
         faq.answer = content['answer']
     faq.save()

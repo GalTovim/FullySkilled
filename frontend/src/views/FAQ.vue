@@ -18,21 +18,15 @@
     >
       <form ref="form" @submit.stop.prevent="handleSubmit">
         <b-form-group
-          :state="questionState"
           label="Question"
           label-for="question-input"
           invalid-feedback="Question is required"
         >
-          <b-form-input id="question-input" v-model="question" :state="questionState" required></b-form-input>
+          <b-form-input id="question-input" v-model="question" required></b-form-input>
         </b-form-group>
 
-        <b-form-group
-          :state="answerState"
-          label="Answer"
-          label-for="answer-input"
-          invalid-feedback="Answer is required"
-        >
-          <b-form-input id="answer-input" v-model="answer" :state="answerState" required></b-form-input>
+        <b-form-group label="Answer" label-for="answer-input" invalid-feedback="Answer is required">
+          <b-form-input id="answer-input" v-model="answer" required></b-form-input>
         </b-form-group>
       </form>
     </b-modal>
@@ -59,6 +53,13 @@ export default {
     };
   },
   methods: {
+    getQuestions() {
+      const path = "http://localhost:5000/api/getQuestions";
+
+      axios.get(path).then(res => {
+        this.faqs.push(...res.data.questions);
+      });
+    },
     resetModal() {
       this.question = "";
       this.answer = "";
@@ -98,18 +99,14 @@ export default {
       this.$nextTick(() => {
         this.$refs.modal.hide();
       });
-      this.$router.go();
+      this.getQuestions();
     }
   },
   computed: {
     ...mapState(["user"])
   },
   beforeMount() {
-    const path = "http://localhost:5000/api/getQuestions";
-
-    axios.get(path).then(res => {
-      this.faqs = res.data.questions;
-    });
+    this.getQuestions();
   }
 };
 </script>

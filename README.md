@@ -4,6 +4,7 @@ For Running the Project, You need to have \ install:
 1. Linux Operation System. (You can use VirtualBox)
 2. Install libraries required to run the Project. (VirtualBox)
 3. MongoDB Database.
+4. How to Run the Project.
 
 ## 1.Linux Operation System Installation (VirtualBox)
                     
@@ -48,3 +49,17 @@ Under VirtulBox platform packages.
 Follow those steps:
 1. Enter your MongoDB [User](https://cloud.mongodb.com/user#/atlas/login "User") , or [Register](https://cloud.mongodb.com/user#/atlas/register/accountProfile "Register").
 2. Open new Cluster. (Database)
+
+                    
+					
+## 4. How To Run the Project
+
+
+Follow those steps:
+1. Open Visual Studio Code with the Project. (if you followed the steps before you will have it by now)
+2. With the command cd enter the FullySkilled folder and then 'cd backend'.
+3. Run the Command: python3 app.py
+4. Open New Terminal.
+5. With the command cd enter the FullySkilled folder and then 'cd frontend'.
+6. Run the Command: npm run server
+7. The Project is running, enter by Clicking the Link.

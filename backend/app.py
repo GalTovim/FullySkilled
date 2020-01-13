@@ -154,14 +154,14 @@ def add_question():
     content = request.form
     count = Faq.objects.count()
     count += 1
-    faq = Faq(question=content['question'],number=count)
+    faq = Faq(question=content['question'], number=count)
     if 'answer' in content:
         faq.answer = content['answer']
     faq.save()
     return jsonify({'status': 200, 'message': 'Question added'})
 
 
-@app.route('/api/addAnswer', method=['POST'])
+@app.route('/api/addAnswer', methods=['POST'])
 def add_answer():
     try:
         faq = Faq.objects.get(question=request.form['answer'])
@@ -170,7 +170,7 @@ def add_answer():
     faq.answer = content['answer']
     faq.save()
     return jsonify({'status': 200, 'faq': 'Answer added'})
-    
+
 
 @app.route('/api/getQuestions', methods=['GET'])
 def get_questions():

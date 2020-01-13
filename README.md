@@ -1,9 +1,13 @@
 # Backend
 
 Backend is a Python server written with Flask.
+The Database is MongoDB.
+The Environment of the Development is Linux.
 
 ## Installation
-If you do not have python 3 installed please install it.
+#part 1
+First, you must have Linux system to run the code.
+If you have Linux system,go to part 2.
 
 In the backend folder:
 

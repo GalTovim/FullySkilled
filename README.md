@@ -1,12 +1,13 @@
-![](https://raw.githubusercontent.com/GalTovim/FullySkilled/master/FullySkilled.png)
+
 ## Menu
 For Running the Project, You need to have \ install:
 1. Linux Operation System. (You can use VirtualBox)
 2. Install libraries required to run the Project. (VirtualBox)
 3. MongoDB Database.
 4. How to Run the Project.
+5. Database Comunnication Configuration
 
-## 1.Linux Operation System Installation (VirtualBox)
+## 1. Linux Operation System Installation (VirtualBox)
                     
 					
 Follow those steps:
@@ -17,7 +18,7 @@ Under VirtulBox platform packages.
 4. Press install when the Operation System is running and then next until it finishes.
                     
 					
-## 2.Install libraries required to run the Project (VirtualBox)
+## 2. Install libraries required to run the Project (VirtualBox)
                     
 					
 | Ubuntu | Description                    |
@@ -43,7 +44,7 @@ Under VirtulBox platform packages.
 |`install npm`|You need to enter the folder FullySkilled and then enter the folder frontend, there you will run this command.|
                     
 					
-## 3.MongoDB Database
+## 3. MongoDB Database
                     
 					
 Follow those steps:
@@ -63,3 +64,24 @@ Follow those steps:
 5. With the command cd enter the FullySkilled folder and then 'cd frontend'.
 6. Run the Command: npm run server
 7. The Project is running, enter by Clicking the Link.
+
+                    
+					
+## 5. Database Communication Configuration
+
+Add the following into the Python main file:
+
+```python
+from flask_mongoengine import MongoEngine
+from mongoengine.errors import NotUniqueError, DoesNotExist
+
+app = Flask(__name__)
+CORS(app)
+
+app.secret_key = 'super secret key'
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['MONGODB_HOST'] = 'mongodb+srv://tar:FullySkilled@cluster0-byfy8.mongodb.net/FullySkilled?retryWrites=true' \
+                             '&w=majority'
+
+db = MongoEngine(app)
+```

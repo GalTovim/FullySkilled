@@ -1,3 +1,4 @@
+![](https://raw.githubusercontent.com/GalTovim/FullySkilled/master/FullySkilled.png)
 
 ## Menu
 For Running the Project, You need to have \ install:
@@ -5,7 +6,9 @@ For Running the Project, You need to have \ install:
 2. Install libraries required to run the Project. (VirtualBox)
 3. MongoDB Database.
 4. How to Run the Project.
-5. Database Comunnication Configuration
+5. Database Comunnication Configuration.
+6. Changes made to the Requirements.
+7. Diagram.
 
 ## 1. Linux Operation System Installation (VirtualBox)
                     
@@ -85,3 +88,12 @@ app.config['MONGODB_HOST'] = 'mongodb+srv://tar:FullySkilled@cluster0-byfy8.mong
 
 db = MongoEngine(app)
 ```
+## 6. Changes made to the Requirements
+
+None were changed.
+
+## 7. Diagrams
+
+![](https://raw.githubusercontent.com/GalTovim/FullySkilled/master/DFDLev0.png)
+![](https://raw.githubusercontent.com/GalTovim/FullySkilled/master/DFDLev1.png)
+![](https://raw.githubusercontent.com/GalTovim/FullySkilled/master/ERD.png)

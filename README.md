@@ -5,7 +5,7 @@ For Running the Project, You need to have \ install:
 2. Install libraries required to run the Project. (VirtualBox)
 3. MongoDB Database.
 
-## Linux Operation System Installation (VirtualBox)
+## 1.Linux Operation System Installation (VirtualBox)
                     
 					
 Follow those steps:
@@ -16,7 +16,7 @@ Under VirtulBox platform packages.
 4. Press install when the Operation System is running and then next until it finishes.
                     
 					
-## Install libraries required to run the Project (VirtualBox)
+## 2.Install libraries required to run the Project (VirtualBox)
                     
 					
 | Ubuntu | Description                    |
@@ -42,7 +42,7 @@ Under VirtulBox platform packages.
 |`install npm`|You need to enter the folder FullySkilled and then enter the folder frontend, there you will run this command.|
                     
 					
-## MongoDB Database
+## 3.MongoDB Database
                     
 					
 Follow those steps:

@@ -9,6 +9,7 @@ For Running the Project, You need to have \ install:
 5. Database Comunnication Configuration.
 6. Changes made to the Requirements.
 7. Diagram.
+8. System Architecture.
 
 ## 1. Linux Operation System Installation (VirtualBox)
                     
@@ -95,3 +96,7 @@ None were changed.
 ## 7. Diagrams
 
 ![](https://raw.githubusercontent.com/GalTovim/FullySkilled/master/Diagram.png)
+
+## 8. System Architecture
+
+![](https://raw.githubusercontent.com/GalTovim/FullySkilled/master/Architecture.png)

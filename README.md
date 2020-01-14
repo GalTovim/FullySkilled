@@ -94,6 +94,4 @@ None were changed.
 
 ## 7. Diagrams
 
-![](https://raw.githubusercontent.com/GalTovim/FullySkilled/master/DFDLev0.png)
-![](https://raw.githubusercontent.com/GalTovim/FullySkilled/master/DFDLev1.png)
-![](https://raw.githubusercontent.com/GalTovim/FullySkilled/master/ERD.png)
+![](https://raw.githubusercontent.com/GalTovim/FullySkilled/master/Diagram.png)

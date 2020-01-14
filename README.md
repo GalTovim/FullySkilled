@@ -44,7 +44,7 @@ Under VirtulBox platform packages.
 |`git clone https://github.com/GalTovim/FullySkilled.git`|Inside the Visual Studio code, write this command.|
 |`pip3 install -r requirements.txt`|You need to enter the folder FullySkilled and then enter the folder backend, there you will run this command.|
 |`sudo apt install npm`|You need to enter the folder FullySkilled and then enter the folder frontend, there you will run this command.|
-|`install npm`|You need to enter the folder FullySkilled and then enter the folder frontend, there you will run this command.|
+|`npm install`|You need to enter the folder FullySkilled and then enter the folder frontend, there you will run this command.|
                     
 					
 ## 3. MongoDB Database
